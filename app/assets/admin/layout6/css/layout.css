@@ -16,7 +16,7 @@
   margin-right: 10px !important; }
 
 /*--------------------------------------------------
-	[Header]
+  [Header]
 ----------------------------------------------------*/
 .page-header {
   margin: 0;
@@ -701,7 +701,7 @@ Quick Sidebar Content
   .quick-sidebar-toggler {
     top: 60%; } }
 /*--------------------------------------------------
-	[PAGE CONTENT]
+  [PAGE CONTENT]
 ----------------------------------------------------*/
 /* Body */
 body {
@@ -930,12 +930,20 @@ html {
   padding: 20px; }
 
 /* Stylesheet design for min-width: 992px */
-@media (min-width: 992px) {
-  /* 992px */
-  /* Page fixed main content */
-  .page-content .page-fixed-main-content {
-    overflow: hidden;
-    margin-left: 255px; } }
+@media (min-width: 992px)
+{
+    /* 992px */
+    /* Page fixed main content */
+    .page-content .page-fixed-main-content
+    {
+        overflow: hidden;
+
+        margin-left: 20px;
+        
+        margin-right: 20px;
+    }
+}
+
 /***
 Page sidebar
 ***/
@@ -1437,3 +1445,14 @@ Page sidebar
   background: #fff; }
   .copyright-v2 a {
     z-index: 1; }
+
+.allConversations
+{
+    padding-right: 0;
+    padding-left: 1px;
+}
+
+.chattingBox{
+  padding-left: 1px;
+
+}
