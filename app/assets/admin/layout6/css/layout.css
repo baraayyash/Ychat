@@ -1456,3 +1456,7 @@ Page sidebar
   padding-left: 1px;
 
 }
+
+.col1:hover { 
+    background-color: #E9E9E9;
+}
