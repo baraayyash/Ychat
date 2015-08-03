@@ -24,12 +24,6 @@ angular.module('ang1App')
     Tasks.initDashboardWidget();
   });
 
-    $scope.deleteshit = function(id){console.log(id);};
-
-    $scope.awesomeThings = [
-      {"id" : "0", "title" : "HTML5 Boilerplate"},
-     {"id" : "1", "title" : "HTML5 Boilerplate1"},
-     {"id" : "2", "title" : "HTML5 Boilerplate2"}
-    ];
+    
 
   });
