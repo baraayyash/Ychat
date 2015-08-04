@@ -24,14 +24,12 @@ angular.module('ang1App')
 
        conversations.orderByChild('lastTimeActive').on('child_changed', function(snap) {
        //console.log("changed!");
-  //           snap.forEach(function(ss) {
-
-  //      if($scope.chat.udid == ss.val().udid){
-  //       $scope.chat = ss.val();
-  // //  console.log(snap.val());
-  //   }
-
-          });
+          //   snap.forEach(function(ss) {
+          //   var v = ss.val();
+          //   v.lastTimeActive = new Date(v.lastTimeActive );
+          //   if(v.owner == $scope.supervisor )
+          //    records.push( v );
+          // });
         updateValue();
        });
 
