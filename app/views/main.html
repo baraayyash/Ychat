@@ -22,8 +22,8 @@
 
                 <div class="scrollbar-dynamic" data-jquery-scrollbar="jqueryScrollbarOptions" style="height: 500px; padding-right: 0px;width: 324px;" data-always-visible="1" data-rail-visible="0">
                   <ul class="feeds">
-        <div ng-repeat="conv in convs | orderBy: 'lastTimeActive':true">
-                    <li>
+        <div ng-repeat="conv in convs  | orderBy: 'lastTimeActive':true">
+                    <li style="background-color: #E4E4E4; width:98%;" ng-if="conv.status != 'read' ">
                       <a ng-click="showChat(conv)">
                       <div class="col1">
                         <div class="cont">
@@ -42,8 +42,33 @@
                         </div>
                       </div>
                       <div class="col2">
-                        <div class="date">
-                           20 mins
+                        <div style="color:#7B7171" class="date">
+                            {{conv.lastTimeActive  |  date: "HH:MM" }}
+                        </div>
+                      </div>
+                      </a>
+                    </li>
+                      <li style="width:98%;" ng-if="conv.status == 'read' ">
+                      <a ng-click="showChat(conv)">
+                      <div class="col1">
+                        <div class="cont">
+                          <div class="cont-col1">
+                            <img  style=" height:60px; width:60; " class=" img-circle" alt="" src="../../assets/admin/layout/img/male3-512.png"/>
+                          </div>
+                          <div class="cont-col2" style="  display: table; height: 60px;">
+
+                            <div  class="desc" style=" color:black; display: table-cell; vertical-align:middle;padding-left: 68px;">
+                               {{conv.udid}}
+                               <div  style=" color:#8E8E8E; padding-left: 20px; overflow: hidden; text-overflow: ellipsis;white-space: nowrap; width: 240px;">
+                               {{conv.lastMessage[0].body}}
+                            </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col2">
+                        <div  style="color:#7B7171" class="date">
+                           {{conv.lastTimeActive  |  date: "HH:MM" }}
                         </div>
                       </div>
                       </a>
@@ -79,8 +104,9 @@
                 <div class="scrollbar-dynamic" style="height: 500px; padding-right: 0px;width: 324px;"  data-always-visible="1" data-rail-visible="0">
                   <ul class="feeds">
 
-                    <li>
-                      <a href="#">
+                    <div ng-repeat="conv in myConvs  | orderBy: 'lastTimeActive':true">
+                    <li style="background-color: #E4E4E4; width:98%;" ng-if="conv.status != 'read' ">
+                      <a ng-click="showChat(conv)">
                       <div class="col1">
                         <div class="cont">
                           <div class="cont-col1">
@@ -89,23 +115,23 @@
                           <div class="cont-col2" style="  display: table; height: 60px;">
 
                             <div  class="desc" style=" color:black; display: table-cell; vertical-align:middle;padding-left: 68px;">
-                               UD-ID
+                               {{conv.udid}}
                                <div  style=" color:#8E8E8E; padding-left: 20px; overflow: hidden; text-overflow: ellipsis;white-space: nowrap; width: 240px;">
-                               Messssssssssssssage
+                               {{conv.lastMessage[0].body}}
                             </div>
                             </div>
                           </div>
                         </div>
                       </div>
                       <div class="col2">
-                        <div class="date">
-                           20 mins
+                        <div style="color:#7B7171" class="date">
+                            {{conv.lastTimeActive  |  date: "HH:MM" }}
                         </div>
                       </div>
                       </a>
                     </li>
-                    <li>
-                      <a href="#">
+                      <li style="width:98%;" ng-if="conv.status == 'read' ">
+                      <a ng-click="showChat(conv)">
                       <div class="col1">
                         <div class="cont">
                           <div class="cont-col1">
@@ -114,223 +140,24 @@
                           <div class="cont-col2" style="  display: table; height: 60px;">
 
                             <div  class="desc" style=" color:black; display: table-cell; vertical-align:middle;padding-left: 68px;">
-                               UD-ID
+                               {{conv.udid}}
                                <div  style=" color:#8E8E8E; padding-left: 20px; overflow: hidden; text-overflow: ellipsis;white-space: nowrap; width: 240px;">
-                               Messssssssssssssage
+                               {{conv.lastMessage[0].body}}
                             </div>
                             </div>
                           </div>
                         </div>
                       </div>
                       <div class="col2">
-                        <div class="date">
-                           20 mins
+                        <div  style="color:#7B7171" class="date">
+                           {{conv.lastTimeActive  |  date: "HH:MM" }}
                         </div>
                       </div>
                       </a>
                     </li>
-                    <li>
-                      <a href="#">
-                      <div class="col1">
-                        <div class="cont">
-                          <div class="cont-col1">
-                            <img  style=" height:60px; width:60; " class=" img-circle" alt="" src="../../assets/admin/layout/img/male3-512.png"/>
-                          </div>
-                          <div class="cont-col2" style="  display: table; height: 60px;">
+</div>
 
-                            <div  class="desc" style=" color:black; display: table-cell; vertical-align:middle;padding-left: 68px;">
-                               UD-ID
-                               <div  style=" color:#8E8E8E; padding-left: 20px; overflow: hidden; text-overflow: ellipsis;white-space: nowrap; width: 240px;">
-                               Messssssssssssssage
-                            </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col2">
-                        <div class="date">
-                           20 mins
-                        </div>
-                      </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                      <div class="col1">
-                        <div class="cont">
-                          <div class="cont-col1">
-                            <img  style=" height:60px; width:60; " class=" img-circle" alt="" src="../../assets/admin/layout/img/male3-512.png"/>
-                          </div>
-                          <div class="cont-col2" style="  display: table; height: 60px;">
-
-                            <div  class="desc" style=" color:black; display: table-cell; vertical-align:middle;padding-left: 68px;">
-                               UD-ID
-                               <div  style=" color:#8E8E8E; padding-left: 20px; overflow: hidden; text-overflow: ellipsis;white-space: nowrap; width: 240px;">
-                               Messssssssssssssage
-                            </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col2">
-                        <div class="date">
-                           20 mins
-                        </div>
-                      </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                      <div class="col1">
-                        <div class="cont">
-                          <div class="cont-col1">
-                            <img  style=" height:60px; width:60; " class=" img-circle" alt="" src="../../assets/admin/layout/img/male3-512.png"/>
-                          </div>
-                          <div class="cont-col2" style="  display: table; height: 60px;">
-
-                            <div  class="desc" style=" color:black; display: table-cell; vertical-align:middle;padding-left: 68px;">
-                               UD-ID
-                               <div  style=" color:#8E8E8E; padding-left: 20px; overflow: hidden; text-overflow: ellipsis;white-space: nowrap; width: 240px;">
-                               Messssssssssssssage
-                            </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col2">
-                        <div class="date">
-                           20 mins
-                        </div>
-                      </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                      <div class="col1">
-                        <div class="cont">
-                          <div class="cont-col1">
-                            <img  style=" height:60px; width:60; " class=" img-circle" alt="" src="../../assets/admin/layout/img/male3-512.png"/>
-                          </div>
-                          <div class="cont-col2" style="  display: table; height: 60px;">
-
-                            <div  class="desc" style=" color:black; display: table-cell; vertical-align:middle;padding-left: 68px;">
-                               UD-ID
-                               <div  style=" color:#8E8E8E; padding-left: 20px; overflow: hidden; text-overflow: ellipsis;white-space: nowrap; width: 240px;">
-                               Messssssssssssssage
-                            </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col2">
-                        <div class="date">
-                           20 mins
-                        </div>
-                      </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                      <div class="col1">
-                        <div class="cont">
-                          <div class="cont-col1">
-                            <img  style=" height:60px; width:60; " class=" img-circle" alt="" src="../../assets/admin/layout/img/male3-512.png"/>
-                          </div>
-                          <div class="cont-col2" style="  display: table; height: 60px;">
-
-                            <div  class="desc" style=" color:black; display: table-cell; vertical-align:middle;padding-left: 68px;">
-                               UD-ID
-                               <div  style=" color:#8E8E8E; padding-left: 20px; overflow: hidden; text-overflow: ellipsis;white-space: nowrap; width: 240px;">
-                               Messssssssssssssage
-                            </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col2">
-                        <div class="date">
-                           20 mins
-                        </div>
-                      </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                      <div class="col1">
-                        <div class="cont">
-                          <div class="cont-col1">
-                            <img  style=" height:60px; width:60; " class=" img-circle" alt="" src="../../assets/admin/layout/img/male3-512.png"/>
-                          </div>
-                          <div class="cont-col2" style="  display: table; height: 60px;">
-
-                            <div  class="desc" style=" color:black; display: table-cell; vertical-align:middle;padding-left: 68px;">
-                               UD-ID
-                               <div  style=" color:#8E8E8E; padding-left: 20px; overflow: hidden; text-overflow: ellipsis;white-space: nowrap; width: 240px;">
-                               Messssssssssssssage
-                            </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col2">
-                        <div class="date">
-                           20 mins
-                        </div>
-                      </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                      <div class="col1">
-                        <div class="cont">
-                          <div class="cont-col1">
-                            <img  style=" height:60px; width:60; " class=" img-circle" alt="" src="../../assets/admin/layout/img/male3-512.png"/>
-                          </div>
-                          <div class="cont-col2" style="  display: table; height: 60px;">
-
-                            <div  class="desc" style=" color:black; display: table-cell; vertical-align:middle;padding-left: 68px;">
-                               UD-ID
-                               <div  style=" color:#8E8E8E; padding-left: 20px; overflow: hidden; text-overflow: ellipsis;white-space: nowrap; width: 240px;">
-                               Messssssssssssssage
-                            </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col2">
-                        <div class="date">
-                           20 mins
-                        </div>
-                      </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                      <div class="col1">
-                        <div class="cont">
-                          <div class="cont-col1">
-                            <img  style=" height:60px; width:60; " class=" img-circle" alt="" src="../../assets/admin/layout/img/male3-512.png"/>
-                          </div>
-                          <div class="cont-col2" style="  display: table; height: 60px;">
-
-                            <div  class="desc" style=" color:black; display: table-cell; vertical-align:middle;padding-left: 68px;">
-                               UD-ID
-                               <div  style=" color:#8E8E8E; padding-left: 20px; overflow: hidden; text-overflow: ellipsis;white-space: nowrap; width: 240px;">
-                               Messssssssssssssage
-                            </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col2">
-                        <div class="date">
-                           20 mins
-                        </div>
-                      </div>
-                      </a>
-                    </li>
-
-
+                    </ul>
 
 
                 </div>
