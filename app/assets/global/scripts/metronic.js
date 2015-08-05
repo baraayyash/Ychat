@@ -538,45 +538,45 @@ var Metronic = function() {
 
             //Core handlers
             handleInit(); // initialize core variables
-            handleOnResize(); // set and handle responsive
+            // handleOnResize(); // set and handle responsive
 
-            //UI Component handlers
-            handleMaterialDesign(); // handle material design
-            handleUniform(); // hanfle custom radio & checkboxes
-            handleiCheck(); // handles custom icheck radio and checkboxes
-            handleBootstrapSwitch(); // handle bootstrap switch plugin
-            handleScrollers(); // handles slim scrolling contents
-            handleFancybox(); // handle fancy box
-            handleSelect2(); // handle custom Select2 dropdowns
-            handlePortletTools(); // handles portlet action bar functionality(refresh, configure, toggle, remove)
-            handleAlerts(); //handle closabled alerts
-            handleDropdowns(); // handle dropdowns
-            handleTabs(); // handle tabs
-            handleTooltips(); // handle bootstrap tooltips
-            handlePopovers(); // handles bootstrap popovers
-            handleAccordions(); //handles accordions
-            handleModals(); // handle modals
-            handleBootstrapConfirmation(); // handle bootstrap confirmations
-            handleTextareaAutosize(); // handle autosize textareas
+            // //UI Component handlers
+            // handleMaterialDesign(); // handle material design
+            // handleUniform(); // hanfle custom radio & checkboxes
+            // handleiCheck(); // handles custom icheck radio and checkboxes
+            // handleBootstrapSwitch(); // handle bootstrap switch plugin
+            // handleScrollers(); // handles slim scrolling contents
+            // handleFancybox(); // handle fancy box
+            // handleSelect2(); // handle custom Select2 dropdowns
+            // handlePortletTools(); // handles portlet action bar functionality(refresh, configure, toggle, remove)
+            // handleAlerts(); //handle closabled alerts
+            // handleDropdowns(); // handle dropdowns
+            // handleTabs(); // handle tabs
+            // handleTooltips(); // handle bootstrap tooltips
+            // handlePopovers(); // handles bootstrap popovers
+            // handleAccordions(); //handles accordions
+            // handleModals(); // handle modals
+            // handleBootstrapConfirmation(); // handle bootstrap confirmations
+            // handleTextareaAutosize(); // handle autosize textareas
 
-            // Hacks
-            handleFixInputPlaceholderForIE(); //IE8 & IE9 input placeholder issue fix
+            // // Hacks
+            // handleFixInputPlaceholderForIE(); //IE8 & IE9 input placeholder issue fix
         },
 
         //main function to initiate core javascript after ajax complete
         initAjax: function() {
-            handleUniform(); // handles custom radio & checkboxes
-            handleiCheck(); // handles custom icheck radio and checkboxes
-            handleBootstrapSwitch(); // handle bootstrap switch plugin
-            handleDropdownHover(); // handles dropdown hover
-            handleScrollers(); // handles slim scrolling contents
-            handleSelect2(); // handle custom Select2 dropdowns
-            handleFancybox(); // handle fancy box
-            handleDropdowns(); // handle dropdowns
-            handleTooltips(); // handle bootstrap tooltips
-            handlePopovers(); // handles bootstrap popovers
-            handleAccordions(); //handles accordions
-            handleBootstrapConfirmation(); // handle bootstrap confirmations
+            // handleUniform(); // handles custom radio & checkboxes
+            // handleiCheck(); // handles custom icheck radio and checkboxes
+            // handleBootstrapSwitch(); // handle bootstrap switch plugin
+            // handleDropdownHover(); // handles dropdown hover
+            // handleScrollers(); // handles slim scrolling contents
+            // handleSelect2(); // handle custom Select2 dropdowns
+            // handleFancybox(); // handle fancy box
+            // handleDropdowns(); // handle dropdowns
+            // handleTooltips(); // handle bootstrap tooltips
+            // handlePopovers(); // handles bootstrap popovers
+            // handleAccordions(); //handles accordions
+            // handleBootstrapConfirmation(); // handle bootstrap confirmations
         },
 
         //init main components

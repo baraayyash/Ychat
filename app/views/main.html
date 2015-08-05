@@ -25,7 +25,7 @@
         <div ng-repeat="conv in convs  | orderBy: 'lastTimeActive':true">
                     <li style="background-color: #E4E4E4; width:98%;" ng-if="conv.status != 'read' ">
                       <a ng-click="showChat(conv,1)">
-                      <div class="col1">
+                      <div ng-click="showChat(conv,1)" class="col1">
                         <div class="cont">
                           <div class="cont-col1">
                             <img  style=" height:60px; width:60; " class=" img-circle" alt="" src="../../assets/admin/layout/img/male3-512.png"/>
@@ -106,7 +106,7 @@
 
                     <div ng-repeat="conv in myConvs  | orderBy: 'lastTimeActive':true">
                     <li style="background-color: #E4E4E4; width:98%;" ng-if="conv.status != 'read' ">
-                      <a ng-click="showChat(conv)">
+                      <a ng-click="showChat(conv,2)">
                       <div class="col1">
                         <div class="cont">
                           <div class="cont-col1">
@@ -175,7 +175,28 @@
                   <i class="icon-bubble font-red-sunglo"></i>
                   <span class="caption-subject font-red-sunglo bold uppercase">Chats</span>
                 </div>
+                <div ng-if="chat != 0 && chat.owner == supervisor">
+                <button ng-click="dropConv(chat.udid)" type="button" class="btn btn-default" style="float: right;" onclick="">
+                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Drop
+                </button>
+                </div>
+              </div>
+              <div ng-if="chat == 0" class="portlet-body" id="chats">
+               <div class="scrollbar-dynamic" style="height: 439px;" data-always-visible="1" data-rail-visible1="1">
 
+            <div style="margin-top: 50px">
+
+            <div style="height:100px" class="alert alert-info" role="alert">
+             <h3> select a conversation to show chat </h3>
+            </div>
+
+
+
+
+
+             </div>
+
+               </div>
               </div>
               <div ng-if="chat != 0" class="portlet-body" id="chats">
               {{test(chat.udid)}}
@@ -183,7 +204,7 @@
                   <ul class="chats">
                   <div ng-repeat="message in chat.messages">
                     <li ng-if="chat.udid == message.sender" class="in">
-                      <img class="avatar" alt="" src="../../assets/admin/layout/img/avatar1.jpg"/>
+                      <img class="avatar" alt="" src="../../assets/admin/layout/img/male3-512.png"/>
                       <div class="message">
                         <span class="arrow">
                         </span>
@@ -195,7 +216,7 @@
                       </div>
                     </li>
                     <li ng-if="chat.udid != message.sender" class="out">
-                      <img class="avatar" alt="" src="../../assets/admin/layout/img/avatar2.jpg"/>
+                      <img class="avatar" alt="" src="http://www.veryicon.com/icon/ico/Avatar/Free%20Large%20Boss/Businessman.ico"/>
                       <div class="message">
                         <span class="arrow">
                         </span>
@@ -211,18 +232,20 @@
                 <div ng-if="chat.owner == supervisor">
                 <div class="chat-form">
                   <div class="input-cont">
-                    <input class="form-control" type="text" placeholder="Type a message here..."/>
+                    <input ng-model="messageBody" class="form-control" type="text" placeholder="Type a message here..."/>
                   </div>
-                  <div class="btn-cont">
+                  <div  id="scrolll" ng-click="sendMessage(chat.udid,messageBody)" class="btn-cont">
                     <span class="arrow">
                     </span>
-                    <a href="" class="btn blue icn-only">
+                    <a id="scrolll" class="btn blue icn-only">
                     <i class="fa fa-check icon-white"></i>
                     </a>
+                    {{scrollDown()}}
                   </div>
                 </div>
                 </div>
                 <div ng-if="chat.owner != supervisor">
+                {{(scrollDown())}}
                 <div class="chat-form">
                   <div class="input-cont">
                     <input class="form-control"  type="text" disabled="disabled" placeholder="you can only read.. "/>
