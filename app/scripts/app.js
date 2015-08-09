@@ -16,7 +16,8 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-
+    'ui.bootstrap',
+    'popoverToggle'
   ])
   .config(function ($routeProvider) {
     $routeProvider
