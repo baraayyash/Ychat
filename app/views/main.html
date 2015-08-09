@@ -22,9 +22,34 @@
 
                 <div class="scrollbar-dynamic" data-jquery-scrollbar="jqueryScrollbarOptions" style="height: 500px; padding-right: 0px;width: 324px;" data-always-visible="1" data-rail-visible="0">
                   <ul class="feeds">
-        <div ng-repeat="conv in convs | orderBy: 'lastTimeActive':true">
-                    <li>
-                      <a ng-click="showChat(conv)">
+        <div ng-repeat="conv in convs  | orderBy: 'lastTimeActive':true">
+                    <li style="background-color: #E4E4E4; width:98%;" ng-if="conv.status != 'read' ">
+                      <a ng-click="showChat(conv,1)">
+                      <div ng-click="showChat(conv,1)" class="col1">
+                        <div class="cont">
+                          <div class="cont-col1">
+                            <img  style=" height:60px; width:60; " class=" img-circle" alt="" src="../../assets/admin/layout/img/male3-512.png"/>
+                          </div>
+                          <div class="cont-col2" style="  display: table; height: 60px;">
+
+                            <div  class="desc" style=" color:black; display: table-cell; vertical-align:middle;padding-left: 68px;">
+                               {{conv.udid}}
+                               <div  style=" color:#8E8E8E; padding-left: 20px; overflow: hidden; text-overflow: ellipsis;white-space: nowrap; width: 240px;">
+                               {{conv.lastMessage[0].body}}
+                            </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col2">
+                        <div style="color:#7B7171" class="date">
+                            {{conv.lastTimeActive  |  date: "HH:MM" }}
+                        </div>
+                      </div>
+                      </a>
+                    </li>
+                      <li style="width:98%;" ng-if="conv.status == 'read' ">
+                      <a ng-click="showChat(conv,0)">
                       <div class="col1">
                         <div class="cont">
                           <div class="cont-col1">
@@ -42,8 +67,8 @@
                         </div>
                       </div>
                       <div class="col2">
-                        <div class="date">
-                           20 mins
+                        <div  style="color:#7B7171" class="date">
+                           {{conv.lastTimeActive  |  date: "HH:MM" }}
                         </div>
                       </div>
                       </a>
@@ -79,8 +104,9 @@
                 <div class="scrollbar-dynamic" style="height: 500px; padding-right: 0px;width: 324px;"  data-always-visible="1" data-rail-visible="0">
                   <ul class="feeds">
 
-                    <li>
-                      <a href="#">
+                    <div ng-repeat="conv in myConvs  | orderBy: 'lastTimeActive':true">
+                    <li style="background-color: #E4E4E4; width:98%;" ng-if="conv.status != 'read' ">
+                      <a ng-click="showChat(conv,2)">
                       <div class="col1">
                         <div class="cont">
                           <div class="cont-col1">
@@ -89,23 +115,23 @@
                           <div class="cont-col2" style="  display: table; height: 60px;">
 
                             <div  class="desc" style=" color:black; display: table-cell; vertical-align:middle;padding-left: 68px;">
-                               UD-ID
+                               {{conv.udid}}
                                <div  style=" color:#8E8E8E; padding-left: 20px; overflow: hidden; text-overflow: ellipsis;white-space: nowrap; width: 240px;">
-                               Messssssssssssssage
+                               {{conv.lastMessage[0].body}}
                             </div>
                             </div>
                           </div>
                         </div>
                       </div>
                       <div class="col2">
-                        <div class="date">
-                           20 mins
+                        <div style="color:#7B7171" class="date">
+                            {{conv.lastTimeActive  |  date: "HH:MM" }}
                         </div>
                       </div>
                       </a>
                     </li>
-                    <li>
-                      <a href="#">
+                      <li style="width:98%;" ng-if="conv.status == 'read' ">
+                      <a ng-click="showChat(conv)">
                       <div class="col1">
                         <div class="cont">
                           <div class="cont-col1">
@@ -114,223 +140,24 @@
                           <div class="cont-col2" style="  display: table; height: 60px;">
 
                             <div  class="desc" style=" color:black; display: table-cell; vertical-align:middle;padding-left: 68px;">
-                               UD-ID
+                               {{conv.udid}}
                                <div  style=" color:#8E8E8E; padding-left: 20px; overflow: hidden; text-overflow: ellipsis;white-space: nowrap; width: 240px;">
-                               Messssssssssssssage
+                               {{conv.lastMessage[0].body}}
                             </div>
                             </div>
                           </div>
                         </div>
                       </div>
                       <div class="col2">
-                        <div class="date">
-                           20 mins
+                        <div  style="color:#7B7171" class="date">
+                           {{conv.lastTimeActive  |  date: "HH:MM" }}
                         </div>
                       </div>
                       </a>
                     </li>
-                    <li>
-                      <a href="#">
-                      <div class="col1">
-                        <div class="cont">
-                          <div class="cont-col1">
-                            <img  style=" height:60px; width:60; " class=" img-circle" alt="" src="../../assets/admin/layout/img/male3-512.png"/>
-                          </div>
-                          <div class="cont-col2" style="  display: table; height: 60px;">
+</div>
 
-                            <div  class="desc" style=" color:black; display: table-cell; vertical-align:middle;padding-left: 68px;">
-                               UD-ID
-                               <div  style=" color:#8E8E8E; padding-left: 20px; overflow: hidden; text-overflow: ellipsis;white-space: nowrap; width: 240px;">
-                               Messssssssssssssage
-                            </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col2">
-                        <div class="date">
-                           20 mins
-                        </div>
-                      </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                      <div class="col1">
-                        <div class="cont">
-                          <div class="cont-col1">
-                            <img  style=" height:60px; width:60; " class=" img-circle" alt="" src="../../assets/admin/layout/img/male3-512.png"/>
-                          </div>
-                          <div class="cont-col2" style="  display: table; height: 60px;">
-
-                            <div  class="desc" style=" color:black; display: table-cell; vertical-align:middle;padding-left: 68px;">
-                               UD-ID
-                               <div  style=" color:#8E8E8E; padding-left: 20px; overflow: hidden; text-overflow: ellipsis;white-space: nowrap; width: 240px;">
-                               Messssssssssssssage
-                            </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col2">
-                        <div class="date">
-                           20 mins
-                        </div>
-                      </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                      <div class="col1">
-                        <div class="cont">
-                          <div class="cont-col1">
-                            <img  style=" height:60px; width:60; " class=" img-circle" alt="" src="../../assets/admin/layout/img/male3-512.png"/>
-                          </div>
-                          <div class="cont-col2" style="  display: table; height: 60px;">
-
-                            <div  class="desc" style=" color:black; display: table-cell; vertical-align:middle;padding-left: 68px;">
-                               UD-ID
-                               <div  style=" color:#8E8E8E; padding-left: 20px; overflow: hidden; text-overflow: ellipsis;white-space: nowrap; width: 240px;">
-                               Messssssssssssssage
-                            </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col2">
-                        <div class="date">
-                           20 mins
-                        </div>
-                      </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                      <div class="col1">
-                        <div class="cont">
-                          <div class="cont-col1">
-                            <img  style=" height:60px; width:60; " class=" img-circle" alt="" src="../../assets/admin/layout/img/male3-512.png"/>
-                          </div>
-                          <div class="cont-col2" style="  display: table; height: 60px;">
-
-                            <div  class="desc" style=" color:black; display: table-cell; vertical-align:middle;padding-left: 68px;">
-                               UD-ID
-                               <div  style=" color:#8E8E8E; padding-left: 20px; overflow: hidden; text-overflow: ellipsis;white-space: nowrap; width: 240px;">
-                               Messssssssssssssage
-                            </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col2">
-                        <div class="date">
-                           20 mins
-                        </div>
-                      </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                      <div class="col1">
-                        <div class="cont">
-                          <div class="cont-col1">
-                            <img  style=" height:60px; width:60; " class=" img-circle" alt="" src="../../assets/admin/layout/img/male3-512.png"/>
-                          </div>
-                          <div class="cont-col2" style="  display: table; height: 60px;">
-
-                            <div  class="desc" style=" color:black; display: table-cell; vertical-align:middle;padding-left: 68px;">
-                               UD-ID
-                               <div  style=" color:#8E8E8E; padding-left: 20px; overflow: hidden; text-overflow: ellipsis;white-space: nowrap; width: 240px;">
-                               Messssssssssssssage
-                            </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col2">
-                        <div class="date">
-                           20 mins
-                        </div>
-                      </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                      <div class="col1">
-                        <div class="cont">
-                          <div class="cont-col1">
-                            <img  style=" height:60px; width:60; " class=" img-circle" alt="" src="../../assets/admin/layout/img/male3-512.png"/>
-                          </div>
-                          <div class="cont-col2" style="  display: table; height: 60px;">
-
-                            <div  class="desc" style=" color:black; display: table-cell; vertical-align:middle;padding-left: 68px;">
-                               UD-ID
-                               <div  style=" color:#8E8E8E; padding-left: 20px; overflow: hidden; text-overflow: ellipsis;white-space: nowrap; width: 240px;">
-                               Messssssssssssssage
-                            </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col2">
-                        <div class="date">
-                           20 mins
-                        </div>
-                      </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                      <div class="col1">
-                        <div class="cont">
-                          <div class="cont-col1">
-                            <img  style=" height:60px; width:60; " class=" img-circle" alt="" src="../../assets/admin/layout/img/male3-512.png"/>
-                          </div>
-                          <div class="cont-col2" style="  display: table; height: 60px;">
-
-                            <div  class="desc" style=" color:black; display: table-cell; vertical-align:middle;padding-left: 68px;">
-                               UD-ID
-                               <div  style=" color:#8E8E8E; padding-left: 20px; overflow: hidden; text-overflow: ellipsis;white-space: nowrap; width: 240px;">
-                               Messssssssssssssage
-                            </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col2">
-                        <div class="date">
-                           20 mins
-                        </div>
-                      </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                      <div class="col1">
-                        <div class="cont">
-                          <div class="cont-col1">
-                            <img  style=" height:60px; width:60; " class=" img-circle" alt="" src="../../assets/admin/layout/img/male3-512.png"/>
-                          </div>
-                          <div class="cont-col2" style="  display: table; height: 60px;">
-
-                            <div  class="desc" style=" color:black; display: table-cell; vertical-align:middle;padding-left: 68px;">
-                               UD-ID
-                               <div  style=" color:#8E8E8E; padding-left: 20px; overflow: hidden; text-overflow: ellipsis;white-space: nowrap; width: 240px;">
-                               Messssssssssssssage
-                            </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col2">
-                        <div class="date">
-                           20 mins
-                        </div>
-                      </div>
-                      </a>
-                    </li>
-
-
+                    </ul>
 
 
                 </div>
@@ -340,7 +167,7 @@
             </div>
             <!-- END PORTLET-->
           </div>
-           <div class="col-md-6 chattingBox" style="border: 1px solid #e1e1e1 !important;">
+           <div  class="col-md-6 chattingBox" style="border: 1px solid #e1e1e1 !important;">
             <!-- BEGIN PORTLET-->
             <div class="portlet light " style="padding-left: 20px;  padding-right: 10px;padding-bottom: 17px;margin-bottom: 0px;">
               <div class="portlet-title" style="height: 55px; ">
@@ -348,120 +175,80 @@
                   <i class="icon-bubble font-red-sunglo"></i>
                   <span class="caption-subject font-red-sunglo bold uppercase">Chats</span>
                 </div>
-
+                <div ng-if="chat != 0 && chat.owner == supervisor">
+                <button ng-click="dropConv(chat.udid)" type="button" class="btn btn-default" style="float: right;" onclick="">
+                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Drop
+                </button>
+                </div>
               </div>
-              <div class="portlet-body" id="chats">
+              <div ng-if="chat == 0" class="portlet-body" id="chats">
+               <div class="scrollbar-dynamic" style="height: 439px;" data-always-visible="1" data-rail-visible1="1">
+
+            <div style="margin-top: 50px">
+
+            <div style="height:100px" class="alert alert-info" role="alert">
+             <h3> select a conversation to show chat </h3>
+            </div>
+
+
+
+
+
+             </div>
+
+               </div>
+              </div>
+              <div ng-if="chat != 0" class="portlet-body" id="chats">
+              {{test(chat.udid)}}
                 <div class="scrollbar-dynamic" style="height: 439px;" data-always-visible="1" data-rail-visible1="1">
                   <ul class="chats">
-                    <li class="in">
-                      <img class="avatar" alt="" src="../../assets/admin/layout/img/avatar1.jpg"/>
+                  <div ng-repeat="message in chat.messages">
+                    <li ng-if="chat.udid == message.sender" class="in">
+                      <img class="avatar" alt="" src="../../assets/admin/layout/img/male3-512.png"/>
                       <div class="message">
                         <span class="arrow">
                         </span>
                         <a href="javascript:;" class="name">
-                        Bob Nilson </a>
+                        {{message.sender}} </a>
                         <span class="datetime">
                         at 20:09 </span>
-                        <span class="body">
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </span>
+                        <span class="body"> {{ message.body}} </span>
                       </div>
                     </li>
-                    <li class="out">
-                      <img class="avatar" alt="" src="../../assets/admin/layout/img/avatar2.jpg"/>
+                    <li ng-if="chat.udid != message.sender" class="out">
+                      <img class="avatar" alt="" src="http://www.veryicon.com/icon/ico/Avatar/Free%20Large%20Boss/Businessman.ico"/>
                       <div class="message">
                         <span class="arrow">
                         </span>
-                        <a href="javascript:;" class="name">
-                        Lisa Wong </a>
+                        <a href="javascript:;" class="name"> {{message.sender}} </a>
                         <span class="datetime">
-                        at 20:11 </span>
-                        <span class="body">
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </span>
+                        at {{message.time}} </span>
+                        <span class="body"> {{message.body}} </span>
                       </div>
                     </li>
-                    <li class="in">
-                      <img class="avatar" alt="" src="../../assets/admin/layout/img/avatar1.jpg"/>
-                      <div class="message">
-                        <span class="arrow">
-                        </span>
-                        <a href="javascript:;" class="name">
-                        Bob Nilson </a>
-                        <span class="datetime">
-                        at 20:30 </span>
-                        <span class="body">
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </span>
-                      </div>
-                    </li>
-                    <li class="out">
-                      <img class="avatar" alt="" src="../../assets/admin/layout/img/avatar3.jpg"/>
-                      <div class="message">
-                        <span class="arrow">
-                        </span>
-                        <a href="javascript:;" class="name">
-                        Richard Doe </a>
-                        <span class="datetime">
-                        at 20:33 </span>
-                        <span class="body">
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </span>
-                      </div>
-                    </li>
-                    <li class="in">
-                      <img class="avatar" alt="" src="../../assets/admin/layout/img/avatar3.jpg"/>
-                      <div class="message">
-                        <span class="arrow">
-                        </span>
-                        <a href="javascript:;" class="name">
-                        Richard Doe </a>
-                        <span class="datetime">
-                        at 20:35 </span>
-                        <span class="body">
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </span>
-                      </div>
-                    </li>
-                    <li class="out">
-                      <img class="avatar" alt="" src="../../assets/admin/layout/img/avatar1.jpg"/>
-                      <div class="message">
-                        <span class="arrow">
-                        </span>
-                        <a href="javascript:;" class="name">
-                        Bob Nilson </a>
-                        <span class="datetime">
-                        at 20:40 </span>
-                        <span class="body">
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </span>
-                      </div>
-                    </li>
-                    <li class="in">
-                      <img class="avatar" alt="" src="../../assets/admin/layout/img/avatar3.jpg"/>
-                      <div class="message">
-                        <span class="arrow">
-                        </span>
-                        <a href="javascript:;" class="name">
-                        Richard Doe </a>
-                        <span class="datetime">
-                        at 20:40 </span>
-                        <span class="body">
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </span>
-                      </div>
-                    </li>
-                    <li class="out">
-                      <img class="avatar" alt="" src="../../assets/admin/layout/img/avatar1.jpg"/>
-                      <div class="message">
-                        <span class="arrow">
-                        </span>
-                        <a href="javascript:;" class="name">
-                        Bob Nilson </a>
-                        <span class="datetime">
-                        at 20:54 </span>
-                        <span class="body">
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. sed diam nonummy nibh euismod tincidunt ut laoreet. </span>
-                      </div>
-                    </li>
+                    </div>
                   </ul>
                 </div>
+                <div ng-if="chat.owner == supervisor">
                 <div class="chat-form">
                   <div class="input-cont">
-                    <input class="form-control" type="text" placeholder="Type a message here..."/>
+                    <input ng-model="messageBody" class="form-control" type="text" placeholder="Type a message here..."/>
+                  </div>
+                  <div  id="scrolll" ng-click="sendMessage(chat.udid,messageBody)" class="btn-cont">
+                    <span class="arrow">
+                    </span>
+                    <a id="scrolll" class="btn blue icn-only">
+                    <i class="fa fa-check icon-white"></i>
+                    </a>
+                    {{scrollDown()}}
+                  </div>
+                </div>
+                </div>
+                <div ng-if="chat.owner != supervisor">
+                {{(scrollDown())}}
+                <div class="chat-form">
+                  <div class="input-cont">
+                    <input class="form-control"  type="text" disabled="disabled" placeholder="you can only read.. "/>
                   </div>
                   <div class="btn-cont">
                     <span class="arrow">
@@ -470,6 +257,7 @@
                     <i class="fa fa-check icon-white"></i>
                     </a>
                   </div>
+                </div>
                 </div>
               </div>
             </div>
