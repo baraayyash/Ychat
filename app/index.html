@@ -215,6 +215,20 @@ License: You must have a valid license purchased only from themeforest(the above
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
 
+jQuery(document).ready(function() {
+   Metronic.init(); // init metronic core componets
+   Layout.init(); // init layout
+   QuickSidebar.init(); // init quick sidebar
+   Demo.init(); // init demo features
+   Index.init();
+   Index.initDashboardDaterange();
+   Index.initCalendar(); // init index page's custom scripts
+   Index.initCharts(); // init index page's custom scripts
+   Index.initChat();
+   Index.initMiniCharts();
+   Tasks.initDashboardWidget();
+
+ });
        !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
        (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
        r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
