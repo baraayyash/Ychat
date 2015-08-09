@@ -1,0 +1,71 @@
+<style>
+
+
+.profile-usertitle-job {
+    text-transform: uppercase;
+    color: #5b9bd1;
+    font-size: 12px;
+    font-weight: 800;
+    margin-bottom: 7px;
+},
+.profile-userbuttons {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.profile-usertitle-name {
+    color: #5a7391;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 7px;
+}
+
+</style>
+
+<div  class="row" >
+                    <div class="col-md-12">
+                        <!-- BEGIN PROFILE SIDEBAR -->
+                        <div class="profile-sidebar" style="width: 250px;">
+                            <!-- PORTLET MAIN -->
+                            <div class="portlet light profile-sidebar-portlet">
+                                <!-- SIDEBAR USERPIC -->
+                                <div class="profile-userpic">
+                                    <img style="border-radius: 50% !important;" src="../../assets/admin/pages/media/profile/profile_user.jpg" class="img-responsive" alt="">
+                                </div>
+                                <!-- END SIDEBAR USERPIC -->
+                                <!-- SIDEBAR USER TITLE -->
+                                <center>
+                                <div class="profile-usertitle">
+                                    <div style="margin-bottom: 7px;" class="profile-usertitle-name">
+                                         {{chat.user[2]}}
+                                    </div>
+                                    <div class="profile-usertitle-job">
+                                         {{chat.user[3]}}
+                                    </div>
+                                </div>
+                                <!-- END SIDEBAR USER TITLE -->
+                                <!-- SIDEBAR BUTTONS -->
+                                <div class="profile-userbuttons">
+                                    <button ng-click="blockUser(1,chat.udid)" ng-if="chat.user[0] == 'unblocked' " type="button" class="btn btn-circle btn-danger btn-sm">Block</button>
+                                    <button ng-click="blockUser(0,chat.udid)" ng-if="chat.user[0] == 'blocked' " type="button" class="btn btn-circle green btn-sm">Unblock</button>
+                                    <button type="button" class="btn btn-circle blue  btn-sm">Call</button>
+                                </div>
+                                </center>
+
+                                <!-- END SIDEBAR BUTTONS -->
+                                <!-- SIDEBAR MENU -->
+
+                                <!-- END MENU -->
+                            </div>
+                            <!-- END PORTLET MAIN -->
+                            <!-- PORTLET MAIN -->
+
+                            <!-- END PORTLET MAIN -->
+                        </div>
+                        <!-- END BEGIN PROFILE SIDEBAR -->
+                        <!-- BEGIN PROFILE CONTENT -->
+
+                        <!-- END PROFILE CONTENT -->
+                    </div>
+                </div>
+

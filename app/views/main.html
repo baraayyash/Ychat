@@ -6,7 +6,7 @@
               <div class="portlet-title" style="height:55px;">
 
                 <div class="caption caption-md font-blue">
-                  <i class="icon-share font-blue"></i>
+                <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
                   <span class="caption-subject theme-font bold uppercase"> Conversations</span>
                 </div>
 
@@ -33,7 +33,8 @@
                           <div class="cont-col2" style="  display: table; height: 60px;">
 
                             <div  class="desc" style=" color:black; display: table-cell; vertical-align:middle;padding-left: 68px;">
-                               {{conv.udid}}
+                               <div ng-if="conv.user[2] == 'Mobile User' "> {{conv.udid}}  </div>
+                               <div ng-if="conv.user[2] != 'Mobile User'  "> {{conv.user[2]}} </div>
                                <div  style=" color:#8E8E8E; padding-left: 20px; overflow: hidden; text-overflow: ellipsis;white-space: nowrap; width: 240px;">
                                {{conv.lastMessage[0].body}}
                             </div>
@@ -58,7 +59,8 @@
                           <div class="cont-col2" style="  display: table; height: 60px;">
 
                             <div  class="desc" style=" color:black; display: table-cell; vertical-align:middle;padding-left: 68px;">
-                               {{conv.udid}}
+                                  <div ng-if="conv.user[2] == 'Mobile User' "> {{conv.udid}} </div>
+                               <div ng-if="conv.user[2] != 'Mobile User'  "> {{conv.user[2]}} </div>
                                <div  style=" color:#8E8E8E; padding-left: 20px; overflow: hidden; text-overflow: ellipsis;white-space: nowrap; width: 240px;">
                                {{conv.lastMessage[0].body}}
                             </div>
@@ -87,8 +89,9 @@
             <div class="portlet light bordered" style="margin-bottom: 0px;padding-right: 15px;padding-left: 15px;">
               <div class="portlet-title" style=" height: 55px; ">
                 <div class="caption caption-md font-blue">
-                  <i class="icon-share font-blue"></i>
-                  <span class="caption-subject theme-font bold uppercase">Handling</span>
+                <span class="glyphicon glyphicon-check" aria-hidden="true"></span>
+                  <span style="white-space:nowrap;" class="caption-subject theme-font bold uppercase">Handling </span>
+                <span  style="white-space:nowrap;" class="badge">{{unreadMyConvs}} </span>
                 </div>
 
                 <form action="" class="search-form">
@@ -115,7 +118,8 @@
                           <div class="cont-col2" style="  display: table; height: 60px;">
 
                             <div  class="desc" style=" color:black; display: table-cell; vertical-align:middle;padding-left: 68px;">
-                               {{conv.udid}}
+                                 <div ng-if="conv.user[2] == 'Mobile User' "> {{conv.udid}} </div>
+                               <div ng-if="conv.user[2] != 'Mobile User'  "> {{conv.user[2]}} </div>
                                <div  style=" color:#8E8E8E; padding-left: 20px; overflow: hidden; text-overflow: ellipsis;white-space: nowrap; width: 240px;">
                                {{conv.lastMessage[0].body}}
                             </div>
@@ -140,7 +144,8 @@
                           <div class="cont-col2" style="  display: table; height: 60px;">
 
                             <div  class="desc" style=" color:black; display: table-cell; vertical-align:middle;padding-left: 68px;">
-                               {{conv.udid}}
+                                  <div ng-if="conv.user[2] == 'Mobile User' "> {{conv.udid}} </div>
+                               <div ng-if="conv.user[2] != 'Mobile User'  "> {{conv.user[2]}} </div>
                                <div  style=" color:#8E8E8E; padding-left: 20px; overflow: hidden; text-overflow: ellipsis;white-space: nowrap; width: 240px;">
                                {{conv.lastMessage[0].body}}
                             </div>
@@ -173,7 +178,13 @@
               <div class="portlet-title" style="height: 55px; ">
                 <div class="caption">
                   <i class="icon-bubble font-red-sunglo"></i>
-                  <span class="caption-subject font-red-sunglo bold uppercase">Chats</span>
+                  <span class="caption-subject font-red-sunglo bold">Chat
+               <span  ng-if="chat.udid" > with
+              <a ng-if="chat.udid"   popover-template="'/views/test.html'" popover-title="User Profile: {{chat.udid}}" popover-placement="right"  class="name"  popover-append-to-body='true' data-close-others="true">
+                        {{chat.udid}} </a>
+                </span>
+                </span>
+
                 </div>
                 <div ng-if="chat != 0 && chat.owner == supervisor">
                 <button ng-click="dropConv(chat.udid)" type="button" class="btn btn-default" style="float: right;" onclick="">
@@ -181,17 +192,14 @@
                 </button>
                 </div>
               </div>
-              <div ng-if="chat == 0" class="portlet-body" id="chats">
+              <div  style=" padding-bottom: 69px; "ng-if="chat == 0" class="portlet-body" id="chats">
                <div class="scrollbar-dynamic" style="height: 439px;" data-always-visible="1" data-rail-visible1="1">
 
             <div style="margin-top: 50px">
 
-            <div style="height:100px" class="alert alert-info" role="alert">
-             <h3> select a conversation to show chat </h3>
-            </div>
-
-
-
+            <div style="height:100px; text-align:center; background-color: rgba(156, 156, 0, 0.05)" class="alert alert-warning" role="alert" >
+            <h3 > select a conversation to show chat </h3>
+           </div>
 
 
              </div>
@@ -199,7 +207,6 @@
                </div>
               </div>
               <div ng-if="chat != 0" class="portlet-body" id="chats">
-              {{test(chat.udid)}}
                 <div class="scrollbar-dynamic" style="height: 439px;" data-always-visible="1" data-rail-visible1="1">
                   <ul class="chats">
                   <div ng-repeat="message in chat.messages">
@@ -208,10 +215,10 @@
                       <div class="message">
                         <span class="arrow">
                         </span>
-                        <a href="javascript:;" class="name">
+                        <a    class="name"  >
                         {{message.sender}} </a>
                         <span class="datetime">
-                        at 20:09 </span>
+                        at{{message.time}} </span>
                         <span class="body"> {{ message.body}} </span>
                       </div>
                     </li>
@@ -232,16 +239,19 @@
                 <div ng-if="chat.owner == supervisor">
                 <div class="chat-form">
                   <div class="input-cont">
+                  <form ng-submit="sendMessage(chat.udid,messageBody);messageBody='';  " >
                     <input ng-model="messageBody" class="form-control" type="text" placeholder="Type a message here..."/>
                   </div>
-                  <div  id="scrolll" ng-click="sendMessage(chat.udid,messageBody)" class="btn-cont">
+
+                  <div  type="submit" id="scrolll" ng-click="sendMessage(chat.udid,messageBody);messageBody='';" class="btn-cont">
                     <span class="arrow">
                     </span>
-                    <a id="scrolll" class="btn blue icn-only">
-                    <i class="fa fa-check icon-white"></i>
+                    <a  id="scrolll" class="btn blue icn-only">
+                    <i class="glyphicon glyphicon-send"></i>
                     </a>
                     {{scrollDown()}}
                   </div>
+                  </fonm>
                 </div>
                 </div>
                 <div ng-if="chat.owner != supervisor">
