@@ -20,7 +20,7 @@
               </div>
               <div class="portlet-body">
 
-                <div class="scrollbar-dynamic" data-jquery-scrollbar="jqueryScrollbarOptions" style="height: 500px; padding-right: 0px;width: 324px;" data-always-visible="1" data-rail-visible="0">
+                <div style="height: 500px; padding-right: 0px;width: 100%;overflow-x:hidden" class="scrollbar-dynamic" data-jquery-scrollbar="jqueryScrollbarOptions" data-always-visible="1" data-rail-visible="0">
                   <ul class="feeds">
         <div ng-repeat="conv in convs  | orderBy: 'lastTimeActive':true">
                     <li style="background-color: #E4E4E4; width:98%;" ng-if="conv.status != 'read' ">
@@ -44,7 +44,7 @@
                       </div>
                       <div class="col2">
                         <div style="color:#7B7171" class="date">
-                            {{conv.lastTimeActive  |  date: "HH:MM" }}
+                            {{conv.lastTimeActive | date: "HH:MM"  }}
                         </div>
                       </div>
                       </a>
@@ -76,6 +76,8 @@
                       </a>
                     </li>
 </div>
+
+
                 </div>
 
                 <div class="scroller-footer">
@@ -104,7 +106,7 @@
 
               </div>
               <div class="portlet-body">
-                <div class="scrollbar-dynamic" style="height: 500px; padding-right: 0px;width: 324px;"  data-always-visible="1" data-rail-visible="0">
+                <div style="height: 500px; padding-right: 0px;width: 100%;overflow-x:hidden"  class="scrollbar-dynamic"  data-always-visible="1" data-rail-visible="0">
                   <ul class="feeds">
 
                     <div ng-repeat="conv in myConvs  | orderBy: 'lastTimeActive':true">
@@ -120,7 +122,7 @@
                             <div  class="desc" style=" color:black; display: table-cell; vertical-align:middle;padding-left: 68px;">
                                  <div ng-if="conv.user[2] == 'Mobile User' "> {{conv.udid}} </div>
                                <div ng-if="conv.user[2] != 'Mobile User'  "> {{conv.user[2]}} </div>
-                               <div  style=" color:#8E8E8E; padding-left: 20px; overflow: hidden; text-overflow: ellipsis;white-space: nowrap; width: 240px;">
+                               <div  style=" color:#8E8E8E; padding-left: 7px; overflow: hidden; text-overflow: ellipsis;white-space: nowrap; width: 180px;">
                                {{conv.lastMessage[0].body}}
                             </div>
                             </div>
@@ -146,7 +148,7 @@
                             <div  class="desc" style=" color:black; display: table-cell; vertical-align:middle;padding-left: 68px;">
                                   <div ng-if="conv.user[2] == 'Mobile User' "> {{conv.udid}} </div>
                                <div ng-if="conv.user[2] != 'Mobile User'  "> {{conv.user[2]}} </div>
-                               <div  style=" color:#8E8E8E; padding-left: 20px; overflow: hidden; text-overflow: ellipsis;white-space: nowrap; width: 240px;">
+                               <div   style=" color:#8E8E8E; padding-left: 7px; overflow: hidden; text-overflow: ellipsis;white-space: nowrap; width: 180px;">
                                {{conv.lastMessage[0].body}}
                             </div>
                             </div>
@@ -193,7 +195,7 @@
                 </div>
               </div>
               <div  style=" padding-bottom: 69px; "ng-if="chat == 0" class="portlet-body" id="chats">
-               <div class="scrollbar-dynamic" style="height: 439px;" data-always-visible="1" data-rail-visible1="1">
+               <div class="scrollbar-dynamic-chat" style="height: 439px;" data-always-visible="1" data-rail-visible1="1">
 
             <div style="margin-top: 50px">
 
@@ -207,7 +209,7 @@
                </div>
               </div>
               <div ng-if="chat != 0" class="portlet-body" id="chats">
-                <div class="scrollbar-dynamic" style="height: 439px;" data-always-visible="1" data-rail-visible1="1">
+                <div class="scrollbar-dynamic-chat" style="height: 439px;" data-always-visible="1" data-rail-visible1="1">
                   <ul class="chats">
                   <div ng-repeat="message in chat.messages">
                     <li ng-if="chat.udid == message.sender" class="in">
@@ -217,8 +219,8 @@
                         </span>
                         <a    class="name"  >
                         {{message.sender}} </a>
-                        <span class="datetime">
-                        at{{message.time}} </span>
+                        <span class="datetime" title='{{message.time | date: "MMM dd, hh:mm a"}}'>
+                        : {{message.time | timeago}} </span>
                         <span class="body"> {{ message.body}} </span>
                       </div>
                     </li>
@@ -228,8 +230,8 @@
                         <span class="arrow">
                         </span>
                         <a href="javascript:;" class="name"> {{message.sender}} </a>
-                        <span class="datetime">
-                        at {{message.time}} </span>
+                        <span class="datetime"  title='{{message.time | date: "MMM dd, hh:mm a"}}'>
+                         {{message.time | timeago}} </span>
                         <span class="body"> {{message.body}} </span>
                       </div>
                     </li>

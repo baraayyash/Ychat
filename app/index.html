@@ -57,8 +57,9 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
 <body ng-app="ang1App" class="page-quick-sidebar-over-content" ng-controller="MainCtrl">
-<title ng-if="unreadMyConvs !=0">Ychat ({{unreadMyConvs}} )</title>
-<title ng-if="unreadMyConvs ==0">Ychat   </title>
+<title ng-if="unreadMyConvs != 0" ng-bind-html=" 'Ychat (' + unreadMyConvs + ')'">Ychat</title>
+<title>Ychat</title>
+<!-- <title ng-if="unreadMyConvs ==0">Ychat   </title> -->
 
   <!-- BEGIN MAIN LAYOUT -->
   <!-- HEADER BEGIN -->
@@ -251,6 +252,7 @@ jQuery(document).ready(function() {
     <script src="bower_components/ng-lodash/build/ng-lodash.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="bower_components/angular-popover-toggle/popover-toggle.js"></script>
+    <script src="bower_components/ng-timeago/ngtimeago.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
