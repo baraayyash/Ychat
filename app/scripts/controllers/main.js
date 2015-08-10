@@ -27,6 +27,8 @@ angular.module('ang1App')
        conversations.orderByChild('lastTimeActive').on('child_changed', function(snap) {
 
         updateValue();
+        if(snap.val().udid == $scope.chat.udid)
+        updateValue1(snap.val().udid);
        });
 
         users.on('child_changed', function(snap) {
@@ -57,14 +59,14 @@ angular.module('ang1App')
 
         conversations.orderByChild('lastTimeActive').once('child_changed', function(snap) {
        // console.log("changed!");
-       console.log("new chiled added!");
     //   console.log(snap.val());
 
     var conv1 = new Firebase("https://dazzling-fire-5618.firebaseio.com/ios/conversations/"+ snap.val().udid +"");
 
 
-           conv1.on('value', function(snap) {
+           conv1.once('value', function(snap) {
        if($scope.chat.udid == snap.val().udid){
+        console.log("1 !! 1");
       $scope.showChat(snap.val());
       updateValue1($scope.chat.udid);
         console.log("scope changed");
@@ -83,18 +85,18 @@ angular.module('ang1App')
        });
 
 
-        conversations.orderByChild('lastTimeActive').once('child_added', function(snap) {
+    //     conversations.orderByChild('lastTimeActive').once('child_added', function(snap) {
 
-              if($scope.chat.udid == snap.val().udid){
-        $scope.chat = {};
-       $scope.showChat(snap.val());
-       updateValue1($scope.chat.udid);
-        console.log("newwwwwww child !!!!!!!");
-     //  console.log(snap.val());
-    }
+    //           if($scope.chat.udid == snap.val().udid){
+    //     $scope.chat = {};
+    //    $scope.showChat(snap.val());
+    //    updateValue1($scope.chat.udid);
+    //     console.log("newwwwwww child !!!!!!!");
+    //  //  console.log(snap.val());
+    // }
 
-       // updateValue();
-       });
+    //    // updateValue();
+    //    });
        //  var messages = new Firebase("https://dazzling-fire-5618.firebaseio.com/ios/conversations/123458/messages");
        // var def = $q.defer();
        // messages.orderByChild('lastTimeActive').on('child_added', function(snap) {
@@ -203,13 +205,12 @@ angular.module('ang1App')
                 $scope.myConvs = conversations;
             });
         });
-         console.log(results);
     });
 
 };
 
  var updateValue1 = function (id) {
-
+console.log("2!! updateValue1");
     getMyConverstaions().then(function(results) {
         // $scope.convs = results;
         var conversations = [];
@@ -274,22 +275,34 @@ angular.module('ang1App')
 
  $scope.showChat = function(conv,flag){
 
-    $scope.chat = conv;
+      var onComplete = function(){
+       console.log( "done");
+    updateValue();
+};
+
     var conversation = new Firebase("https://dazzling-fire-5618.firebaseio.com/ios/conversations/"+ conv.udid+"");
         var def = $q.defer();
 
     if(flag == 0 && conv.owner == "null"){
-    conversation.child('owner').set($scope.supervisor);
+    conversation.child('owner').set($scope.supervisor,onComplete());
     }
 
     if(flag == 1 && conv.owner == "null"){
     conversation.child('status').set('read');
-    conversation.child('owner').set($scope.supervisor);
+    conversation.child('owner').set($scope.supervisor,onComplete());
+
     }
 
     if(flag == 2 && conv.owner != "null"){
     conversation.child('status').set('read');
     }
+        if(conv.owner == "null"){
+    conversation.child('owner').set($scope.supervisor,onComplete());
+    updateValue1(conv.udid);
+    }
+
+
+      $scope.chat = conv;
      // updateValue1(conv.udid);
 
 // $.delay(1000, function(){
@@ -300,11 +313,11 @@ angular.module('ang1App')
 //    });});
 
 
-   $('.scrollbar-dynamic').animate({
+   // $('.scrollbar-dynamic').animate({
 
-     scrollTop: $('.chats').height()
-   }, 10, function() {
-   });
+   //   scrollTop: $('.chats').height()
+   // }, 10, function() {
+   // });
 
  //console.log($('.chats').height());
 };
@@ -316,7 +329,7 @@ angular.module('ang1App')
        var def = $q.defer();
        conversations.on('child_added', function(snap) {
        // console.log("changed!");
-        updateValue();
+        // updateValue();
        });
 
               conversations.on('child_removed', function(snap) {
@@ -362,11 +375,11 @@ angular.module('ang1App')
    // console.log(snap.val());
 
       // console.log("height = "+ $('.chats').height())
-   $('.scrollbar-dynamic').animate({
+   // $('.scrollbar-dynamic').animate({
 
-     scrollTop: $('.chats').height()
-   }, 10, function() {
-   });
+   //   scrollTop: $('.chats').height()
+   // }, 10, function() {
+   // });
     }
        });
     }
@@ -405,7 +418,7 @@ angular.module('ang1App')
    $scope.scrollDown = function(){
 
 
-       $('.scrollbar-dynamic').animate({
+       $('.scrollbar-dynamic-chat').animate({
 
      scrollTop: $('.chats').height()
    }, 10, function() {

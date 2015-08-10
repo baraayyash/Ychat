@@ -17,7 +17,8 @@ angular
     'ngSanitize',
     'ngTouch',
     'ui.bootstrap',
-    'popoverToggle'
+    'popoverToggle',
+    'ngtimeago'
   ])
   .config(function ($routeProvider) {
     $routeProvider
