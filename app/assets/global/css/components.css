@@ -1,5 +1,5 @@
 /*********************************
- METRONIC SQUARE STYLE COMPONENTS 
+ METRONIC SQUARE STYLE COMPONENTS
 *********************************/
 /*--------------------------------------------------
     [TRANSITION]
@@ -26,9 +26,7 @@ ul,
 code,
 pre,
 li {
-  -webkit-border-radius: 0 !important;
-  -moz-border-radius: 0 !important;
-  border-radius: 0 !important;
+  -
 }
 
 /* except below bootstrap elements */
@@ -54,8 +52,8 @@ body {
 }
 
 /*
- Internet Explorer 10 doesn't differentiate device width from viewport width, and thus doesn't 
- properly apply the media queries in Bootstrap's CSS. To address this, 
+ Internet Explorer 10 doesn't differentiate device width from viewport width, and thus doesn't
+ properly apply the media queries in Bootstrap's CSS. To address this,
  you can optionally include the following CSS and JavaScript to work around this problem until Microsoft issues a fix.
 */
 @-webkit-viewport {
@@ -74,8 +72,8 @@ body {
   width: device-width;
 }
 /*
- Internet Explorer 10 doesn't differentiate device width from viewport width, 
- and thus doesn't properly apply the media queries in Bootstrap's CSS. To address this, following CSS code applied 
+ Internet Explorer 10 doesn't differentiate device width from viewport width,
+ and thus doesn't properly apply the media queries in Bootstrap's CSS. To address this, following CSS code applied
 */
 @-ms-viewport {
   width: auto !important;
@@ -1319,7 +1317,7 @@ Users
 }
 
 /***
-Top News Blocks(new in v1.2.2) 
+Top News Blocks(new in v1.2.2)
 ***/
 .top-news {
   color: #fff;
@@ -1769,7 +1767,7 @@ Simple Line Icons Demo
     width: 33.333%;
   }
 }
-/*** 
+/***
 Glyphicons Demo
 ***/
 .glyphicons-demo ul {
@@ -2516,10 +2514,27 @@ Chats
   position: relative;
 }
 .chats li.in .message {
-  text-align: left;
-  border-left: 2px solid #1BBC9B;
-  margin-left: 65px;
-  background: #fafafa;
+  /*text-align: left;*/
+  /*border-left: 2px solid #1BBC9B;*/
+  margin-left: 40px;
+  /*background: #fafafa;*/
+}
+.chats li .message .bubble{
+    position: relative;
+    background-color: #E7E7E7;
+    color:black;
+    padding: 10px;
+    margin-left: 15px;
+    display: table-cell;
+    max-width: 380px;
+}
+
+.chats li.in .message .bubble{
+    border-radius:2px 30px 30px 20px;;
+}
+.chats li.out .message .bubble{
+    border-radius: 30px 5px 20px 30px;;
+    float: right;
 }
 .chats li.in .message .arrow {
   display: block;
@@ -2533,10 +2548,7 @@ Chats
   border-right: 8px solid #1BBC9B;
 }
 .chats li.out .message {
-  border-right: 2px solid #F3565D;
   margin-right: 65px;
-  background: #fafafa;
-  text-align: right;
 }
 .chats li.out .message .arrow {
   display: block;
@@ -2599,7 +2611,7 @@ Chats
 }
 
 /***
-Customized Bootstrap Close Icon 
+Customized Bootstrap Close Icon
 ***/
 .close {
   display: inline-block;
@@ -4194,7 +4206,7 @@ Metro icons
 }
 
 /***
-Customized Bootstrap Modal 
+Customized Bootstrap Modal
 ***/
 .modal {
   z-index: 10050;
@@ -6013,7 +6025,7 @@ Light Table
 }
 
 /***
-Customized Bootstrap Tabs 
+Customized Bootstrap Tabs
 ***/
 /* Tabs and pills */
 .nav-tabs,
@@ -13821,4 +13833,76 @@ Transparent Button
 .btn-transparent.btn {
   background: transparent;
   color: #888;
+}
+
+/*.message.in:hover:after {
+  content: attr(title1);
+  padding: 4px 4px 4px 8px;
+  color: #333;
+  top: 100%;
+  z-index: 80;
+  position: relative;
+  white-space: nowrap;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  -moz-box-shadow: 0px 0px 4px #222;
+  -webkit-box-shadow: 0px 0px 4px #222;
+  box-shadow: 0px 0px 4px #222;
+  background-image: -moz-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #eeeeee),color-stop(1, #cccccc));
+  background-image: -webkit-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -moz-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -ms-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -o-linear-gradient(top, #eeeeee, #cccccc);
+}
+
+.message.out:hover:after {
+  content: attr(title1);
+  padding: 4px 4px 4px 8px;
+  color: #333;
+  top: 100%;
+  z-index: 80;
+  position: relative;
+  white-space: nowrap;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  -moz-box-shadow: 0px 0px 4px #222;
+  -webkit-box-shadow: 0px 0px 4px #222;
+  box-shadow: 0px 0px 4px #222;
+  background-image: -moz-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #eeeeee),color-stop(1, #cccccc));
+  background-image: -webkit-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -moz-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -ms-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -o-linear-gradient(top, #eeeeee, #cccccc);
+}
+*/
+
+.tip.in{
+  display: none;
+    color: #333;
+    line-height: 15px;
+    top: 100%;
+    z-index: 80;
+    font-size: 10px;
+    left: 0;
+    position: absolute;
+    white-space: nowrap;
+}
+
+.tip.out{
+  display: none;
+    color: #333;
+    line-height: 15px;
+    top: 100%;
+    z-index: 80;
+    font-size: 10px;
+    right: 0;
+    position: absolute;
+    white-space: nowrap;
+}
+.message:hover .tip{
+  display:block;
 }

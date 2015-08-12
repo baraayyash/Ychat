@@ -807,6 +807,7 @@ html {
     [Page Content Popup]
 ----------------------------------------------------*/
 .page-content.page-content-popup {
+  border-radius: 30px;
   background: #fff; }
 
 /* Set space for content */
@@ -1516,6 +1517,7 @@ Page sidebar
 
 .scrollbar-dynamic-chat {
     max-height: 100%;
+    padding-bottom: 15px;
     overflow: auto;
 }
 
