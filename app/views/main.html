@@ -1,6 +1,6 @@
      <div class="page-fixed-main-content">
         <div class="row">
-          <div class="col-md-3" style="padding-left: 0px;padding-right: 0px;">
+          <div class="col-md-3" style="padding-left: 0px;padding-right: 10px;">
             <!-- BEGIN PORTLET-->
             <div class="portlet light bordered" style="margin-bottom: 0px;padding-right: 15px;padding-left: 15px;">
               <div class="portlet-title" style="height:55px;">
@@ -8,6 +8,9 @@
                 <div class="caption caption-md font-blue">
                 <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
                   <span class="caption-subject theme-font bold uppercase"> Conversations</span>
+                  <span ng-if="loading == 1">
+                    <img  style="float:right;height: 20px; width:20p" src="http://www.pecsusa.com/loading.gif">
+                    </span>
                 </div>
 
                 <form action="" class="search-form">
@@ -44,7 +47,7 @@
                       </div>
                       <div class="col2">
                         <div style="color:#7B7171" class="date">
-                            {{conv.lastTimeActive | date: "HH:MM"  }}
+                            {{conv.lastTimeActive | date: "HH:mm"  }}
                         </div>
                       </div>
                       </a>
@@ -54,7 +57,7 @@
                       <div class="col1">
                         <div class="cont">
                           <div class="cont-col1">
-                            <img  style=" height:60px; width:60; " class=" img-circle" alt="" src="../../assets/admin/layout/img/male3-512.png"/>
+                            <img  style=" height:60px; width:60; " class=" img-circle" alt="" src="{{ conv.user[6]}}"/>
                           </div>
                           <div class="cont-col2" style="  display: table; height: 60px;">
 
@@ -70,7 +73,7 @@
                       </div>
                       <div class="col2">
                         <div  style="color:#7B7171" class="date">
-                           {{conv.lastTimeActive  |  date: "HH:MM" }}
+                           {{conv.lastTimeActive  |  date: "HH:mm" }}
                         </div>
                       </div>
                       </a>
@@ -86,14 +89,18 @@
             </div>
             <!-- END PORTLET-->
           </div>
-          <div class="col-md-3" style="padding-left: 0px;padding-right: 0px;">
+          <div class="col-md-3" style="padding-left: 0px;padding-right: 10px; border-radius: 4px;">
             <!-- BEGIN PORTLET-->
             <div class="portlet light bordered" style="margin-bottom: 0px;padding-right: 15px;padding-left: 15px;">
               <div class="portlet-title" style=" height: 55px; ">
                 <div class="caption caption-md font-blue">
                 <span class="glyphicon glyphicon-check" aria-hidden="true"></span>
-                  <span style="white-space:nowrap;" class="caption-subject theme-font bold uppercase">Handling </span>
-                <span  style="white-space:nowrap;" class="badge">{{unreadMyConvs}} </span>
+                  <span style="white-space:nowrap;" class="caption-subject theme-font bold uppercase">Handling
+                    <span ng-if="loading == 1">
+                    <img  style="float:right;height: 20px; width:20p" src="http://www.pecsusa.com/loading.gif">
+                    </span>
+                  </span>
+                <span  style="white-space:nowrap;" ng-bind=" {{unreadMyConvs}}" class="badge">0</span>
                 </div>
 
                 <form action="" class="search-form">
@@ -115,13 +122,13 @@
                       <div class="col1">
                         <div class="cont">
                           <div class="cont-col1">
-                            <img  style=" height:60px; width:60; " class=" img-circle" alt="" src="../../assets/admin/layout/img/male3-512.png"/>
+                            <img  style=" height:60px; width:60; " class=" img-circle" alt="" src="{{ conv.user[6]}}"/>
                           </div>
                           <div class="cont-col2" style="  display: table; height: 60px;">
 
                             <div  class="desc" style=" color:black; display: table-cell; vertical-align:middle;padding-left: 68px;">
-                                 <div ng-if="conv.user[2] == 'Mobile User' "> {{conv.udid}} </div>
-                               <div ng-if="conv.user[2] != 'Mobile User'  "> {{conv.user[2]}} </div>
+                                 <div ng-if="conv.user[2] == 'User' "> {{conv.udid}} </div>
+                               <div ng-if="conv.user[2] != 'User'  "> {{conv.user[2]}} </div>
                                <div  style=" color:#8E8E8E; padding-left: 7px; overflow: hidden; text-overflow: ellipsis;white-space: nowrap; width: 180px;">
                                {{conv.lastMessage[0].body}}
                             </div>
@@ -131,7 +138,7 @@
                       </div>
                       <div class="col2">
                         <div style="color:#7B7171" class="date">
-                            {{conv.lastTimeActive  |  date: "HH:MM" }}
+                            {{conv.lastTimeActive  |  date: "HH:mm" }}
                         </div>
                       </div>
                       </a>
@@ -141,13 +148,13 @@
                       <div class="col1">
                         <div class="cont">
                           <div class="cont-col1">
-                            <img  style=" height:60px; width:60; " class=" img-circle" alt="" src="../../assets/admin/layout/img/male3-512.png"/>
+                            <img  style=" height:60px; width:60; " class=" img-circle" alt="" src="{{conv.user[6]}}"/>
                           </div>
                           <div class="cont-col2" style="  display: table; height: 60px;">
 
                             <div  class="desc" style=" color:black; display: table-cell; vertical-align:middle;padding-left: 68px;">
-                                  <div ng-if="conv.user[2] == 'Mobile User' "> {{conv.udid}} </div>
-                               <div ng-if="conv.user[2] != 'Mobile User'  "> {{conv.user[2]}} </div>
+                                  <div ng-if="conv.user[2] == 'User' "> {{conv.udid}} </div>
+                               <div ng-if="conv.user[2] != 'User'  "> {{conv.user[2]}} </div>
                                <div   style=" color:#8E8E8E; padding-left: 7px; overflow: hidden; text-overflow: ellipsis;white-space: nowrap; width: 180px;">
                                {{conv.lastMessage[0].body}}
                             </div>
@@ -157,7 +164,7 @@
                       </div>
                       <div class="col2">
                         <div  style="color:#7B7171" class="date">
-                           {{conv.lastTimeActive  |  date: "HH:MM" }}
+                           {{conv.lastTimeActive  |  date: "HH:mm" }}
                         </div>
                       </div>
                       </a>
@@ -182,8 +189,11 @@
                   <i class="icon-bubble font-red-sunglo"></i>
                   <span class="caption-subject font-red-sunglo bold">Chat
                <span  ng-if="chat.udid" > with
-              <a ng-if="chat.udid"   popover-template="'/views/test.html'" popover-title="User Profile: {{chat.udid}}" popover-placement="right"  class="name"  popover-append-to-body='true' data-close-others="true">
-                        {{chat.udid}} </a>
+              <a ng-if="chat.udid"   popover-template="'/views/test.html'" popover-title="User Profile: {{chat.udid}}" popover-placement="bottom"  class="name"  popover-append-to-body='true' data-close-others="true">
+                        {{chat.udid}}
+             <span ng-if="chat.user[4] == 'online' " title="online" class="item-status"><span class="badge badge-empty badge-success"></span>  </span>
+              <span ng-if="chat.user[4] != 'online' " title="offonline" class="item-status"><span class="badge badge-empty badge-danger"></span>  </span>
+              </a>
                 </span>
                 </span>
 
@@ -195,7 +205,7 @@
                 </div>
               </div>
               <div  style=" padding-bottom: 69px; "ng-if="chat == 0" class="portlet-body" id="chats">
-               <div class="scrollbar-dynamic-chat" style="height: 439px;" data-always-visible="1" data-rail-visible1="1">
+               <div  class="scrollbar-dynamic-chat" style="padding-bottom: 15px; height: 439px;" data-always-visible="1" data-rail-visible1="1">
 
             <div style="margin-top: 50px">
 
@@ -211,32 +221,33 @@
               <div ng-if="chat != 0" class="portlet-body" id="chats">
                 <div class="scrollbar-dynamic-chat" style="height: 439px;" data-always-visible="1" data-rail-visible1="1">
                   <ul class="chats">
-                  <div ng-repeat="message in chat.messages">
-                    <li ng-if="chat.udid == message.sender" class="in">
+                  <div  ng-repeat="message in chat.messages">
+                    <li  ng-if="chat.udid == message.sender" class="in">
                       <img class="avatar" alt="" src="../../assets/admin/layout/img/male3-512.png"/>
-                      <div class="message">
-                        <span class="arrow">
-                        </span>
-                        <a    class="name"  >
-                        {{message.sender}} </a>
-                        <span class="datetime" title='{{message.time | date: "MMM dd, hh:mm a"}}'>
-                        : {{message.time | timeago}} </span>
-                        <span class="body"> {{ message.body}} </span>
+                      <div title1='{{message.time | timeago}}' class="message in">
+
+                        <div class="bubble" title='{{message.time | date: "MMM  dd, hh:mm"}}'> {{ message.body}}
+                        <div class="tip in"> {{message.time | timeago}} </div> </div>
                       </div>
                     </li>
                     <li ng-if="chat.udid != message.sender" class="out">
                       <img class="avatar" alt="" src="http://www.veryicon.com/icon/ico/Avatar/Free%20Large%20Boss/Businessman.ico"/>
-                      <div class="message">
-                        <span class="arrow">
-                        </span>
-                        <a href="javascript:;" class="name"> {{message.sender}} </a>
-                        <span class="datetime"  title='{{message.time | date: "MMM dd, hh:mm a"}}'>
-                         {{message.time | timeago}} </span>
-                        <span class="body"> {{message.body}} </span>
+                       <div title1='{{message.time | timeago}}'  class="message out">
+
+                        <span class="datetime" title='{{message.time | date: "MMM  dd, hh:mm"}}'>
+                        &nbsp; </span>
+
+                        <div  class="bubble" title='{{message.time | date: "MMM  dd, hh:mm"}}'>  {{ message.body}}
+                        <div class="tip out"> {{message.time | timeago}} </div>  </div>
+
                       </div>
                     </li>
                     </div>
                   </ul>
+                </div>
+                <div style="float:right;position: absolute; margin: -4px 0px 0px 3px" ng-if="chat.seen =='true' ">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                seen
                 </div>
                 <div ng-if="chat.owner == supervisor">
                 <div class="chat-form">
