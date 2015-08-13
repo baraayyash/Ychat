@@ -13906,3 +13906,13 @@ Transparent Button
 .message:hover .tip{
   display:block;
 }
+
+
+.selected li {
+  background-color: red;
+}
+
+
+.selected a {
+  background-color: red;
+}

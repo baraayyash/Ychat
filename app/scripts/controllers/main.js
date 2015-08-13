@@ -8,7 +8,7 @@
  * Controller of the ang1App
  */
 angular.module('ang1App')
-    .controller('MainCtrl', function($scope, $q) {
+    .controller('MainCtrl', function($scope, $q, chatServices) {
 
         $scope.supervisor = 1;
         $scope.convs = {};
@@ -17,17 +17,12 @@ angular.module('ang1App')
         $scope.unreadMyConvs = 0;
         $scope.popup = 0;
         $scope.loading = 1;
+        $scope.selected = 0;
 
 
-        // $scope.isOpen = true;
-
-
-
-$scope.idSelectedVote = null;
-
-$scope.setSelected = function (idSelectedVote) {
-   $scope.idSelectedVote = idSelectedVote;
-};
+        $scope.setSelected = function(conv) {
+            $scope.selected = conv.udid;
+        }
 
 
         var conversations = new Firebase("https://dazzling-fire-5618.firebaseio.com/ios/conversations");
@@ -36,10 +31,10 @@ $scope.setSelected = function (idSelectedVote) {
         var def = $q.defer();
 
         conversations.orderByChild('lastTimeActive').on('child_changed', function(snap) {
-
             updateValue();
-            if (snap.val().udid == $scope.chat.udid)
+            if (snap.val().udid == $scope.chat.udid) {
                 updateValue1(snap.val().udid);
+            }
         });
 
         users.on('child_changed', function(snap) {
@@ -51,8 +46,6 @@ $scope.setSelected = function (idSelectedVote) {
         });
 
         conversations.orderByChild('lastTimeActive').once('child_changed', function(snap) {
-            // console.log("changed!");
-            //   console.log(snap.val());
 
             var conversation = new Firebase("https://dazzling-fire-5618.firebaseio.com/ios/conversations/" + snap.val().udid + "");
 
@@ -61,7 +54,6 @@ $scope.setSelected = function (idSelectedVote) {
                 if ($scope.chat.udid == snap.val().udid) {
                     $scope.showChat(snap.val());
                     updateValue1($scope.chat.udid);
-                    console.log("scope changed");
                     //console.log(snap.val());
                 }
             });
@@ -69,14 +61,17 @@ $scope.setSelected = function (idSelectedVote) {
         });
 
 
-        var getConverstaions = function() {
+
+  var getConverstaions = function() {
             var def = $q.defer();
 
             conversations.orderByChild('lastTimeActive').on('value', function(snap) {
                 var records = [];
                 snap.forEach(function(ss) {
                     var v = ss.val();
-                    v.lastTimeActive = new Date(v.lastTimeActive);
+
+                    v.lastTimeActive = Date.parse(v.lastTimeActive) ;
+                    // console.log('v.lastTimeActive: ', v.lastTimeActive)
                     if (v.owner != $scope.supervisor)
                         records.push(v);
                 });
@@ -170,37 +165,29 @@ $scope.setSelected = function (idSelectedVote) {
         };
 
         var updateValue1 = function(id) {
-            console.log("2!! updateValue1");
-            getMyConverstaions().then(function(results) {
-                // $scope.convs = results;
-                var conversations = [];
 
+            getMyConverstaions().then(function(results) {
+                var conversations = [];
                 results.forEach(function(result) {
                     if (id == result.udid) {
                         console.log("hello");
                         getUser(id).then(function(user) {
                             result.user = user;
                             conversations.push(result);
-                            //$scope.convs = conversations;
                             $scope.showChat(result);
                         });
-
                     }
                 });
-                //  console.log(results);
             });
 
         };
 
         getConverstaions().then(function(results) {
 
-            // $scope.convs = results;
             var conversations = [];
             results.forEach(function(result) {
                 getUser(result.udid).then(function(user) {
                     result.user = user;
-                    // conversations.push(result);
-                    //$scope.convs = conversations;
                 });
                 getLastMessage(result.udid).then(function(user) {
                     result.lastMessage = user;
@@ -210,18 +197,14 @@ $scope.setSelected = function (idSelectedVote) {
                 });
                 $scope.loading = 0;
             });
-            //console.log(results);
         });
 
 
         getMyConverstaions().then(function(results) {
-            // $scope.convs = results;
             var conversations = [];
             results.forEach(function(result) {
                 getUser(result.udid).then(function(user) {
                     result.user = user;
-                    // conversations.push(result);
-                    //$scope.convs = conversations;
                 });
                 getLastMessage(result.udid).then(function(user) {
                     result.lastMessage = user;
@@ -232,7 +215,6 @@ $scope.setSelected = function (idSelectedVote) {
 
         });
 
-        // setInterval(function () { $scope.$apply(); }, 1000);
 
         $scope.showChat = function(conv, flag) {
 
@@ -253,7 +235,7 @@ $scope.setSelected = function (idSelectedVote) {
 
             }
 
-            if(conv.owner == $scope.supervisor){
+            if (conv.owner == $scope.supervisor) {
                 conversation.child('status').set('read');
             }
 
@@ -262,6 +244,7 @@ $scope.setSelected = function (idSelectedVote) {
             }
             if (conv.owner == "null") {
                 conversation.child('owner').set($scope.supervisor, onComplete());
+                $scope.selected = conv.udid;
                 updateValue1(conv.udid);
             }
 
@@ -273,13 +256,8 @@ $scope.setSelected = function (idSelectedVote) {
 
 
         var def = $q.defer();
-        conversations.on('child_added', function(snap) {
-            // console.log("changed!");
-            // updateValue();
-        });
 
         conversations.on('child_removed', function(snap) {
-            // console.log("changed!");
             updateValue();
         });
 
@@ -287,50 +265,18 @@ $scope.setSelected = function (idSelectedVote) {
 
         $scope.sendMessage = function(id, m) {
 
-            if (m) {
-                var conv = new Firebase("https://dazzling-fire-5618.firebaseio.com/ios/conversations/" + id + "");
-                var time = new Date();
+            chatServices.sendMessage(id, m, $scope);
 
-
-                var t = time.getFullYear() + '-' +
-                    (((time.getMonth() + 1) < 10) ? ("0" + (time.getMonth() + 1)) : (time.getMonth() + 1)) + '-' + ((time.getDate() < 10) ? ("0" + time.getDate()) : time.getDate()) + " " +
-                    time.getHours() + ':' +
-                    ((time.getMinutes() < 10) ? ("0" + time.getMinutes()) : (time.getMinutes())) + ':' +
-                    ((time.getSeconds() < 10) ? ("0" + time.getSeconds()) : (time.getSeconds()));
-
-
-                var datetime = time.getDate() + "/" + (time.getMonth() + 1) + "/" + time.getFullYear() + " @ " + time.getHours() + ":" + time.getMinutes() +
-                    +time.getSeconds();
-                conv.child('messages').push({
-                    body: m,
-                    sender: "" + $scope.supervisor,
-                    time: t
-                });
-                conv.child('lastTimeActive').set(t);
-                conv.child('seen').set("false");
-                //$scope.messageBody = " ";
-                conv.on('value', function(snap) {
-                    if ($scope.chat.udid == snap.val().udid) {
-                        updateValue1($scope.chat.udid);
-                    }
-                });
-            }
         };
 
 
 
         $scope.dropConv = function(id) {
-
             $scope.chat = 0;
-
             var conversationForUser = new Firebase("https://dazzling-fire-5618.firebaseio.com/ios/conversations/" + id + "");
-
-            var def = $q.defer();
             conversationForUser.child('owner').set("null");
-
-            updateValue();
+            $scope.selected = 0;
         };
-
 
         $scope.blockUser = function(flag, id) {
 

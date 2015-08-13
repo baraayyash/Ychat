@@ -1,291 +1,278 @@
-     <div class="page-fixed-main-content">
-        <div class="row">
-          <div class="col-md-3" style="padding-left: 0px;padding-right: 10px;">
+<div class="page-fixed-main-content">
+    <div class="row">
+        <div class="col-md-3" style="padding-left: 0px;padding-right: 10px;">
             <!-- BEGIN PORTLET-->
             <div class="portlet light bordered" style="margin-bottom: 0px;padding-right: 15px;padding-left: 15px;">
-              <div class="portlet-title" style="height:55px;">
-
-                <div class="caption caption-md font-blue">
-                <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-                  <span class="caption-subject theme-font bold uppercase"> Conversations</span>
-                  <span ng-if="loading == 1">
+                <div class="portlet-title" style="height:55px;">
+                    <div class="caption caption-md font-blue">
+                        <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                        <span class="caption-subject theme-font bold uppercase"> Conversations</span>
+                        <span ng-if="loading == 1">
                     <img  style="float:right;height: 20px; width:20p" src="http://www.pecsusa.com/loading.gif">
                     </span>
+                    </div>
+                    <form action="" class="search-form">
+                        <div class="form-group has-feedback">
+                            <label for="search" class="sr-only">Search</label>
+                            <input type="text" class="form-control" name="search" id="search" placeholder="search">
+                            <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                        </div>
+                    </form>
                 </div>
-
-                <form action="" class="search-form">
-                    <div class="form-group has-feedback">
-                    <label for="search" class="sr-only">Search</label>
-                    <input type="text" class="form-control" name="search" id="search" placeholder="search">
-                      <span class="glyphicon glyphicon-search form-control-feedback"></span>
-                  </div>
-                </form>
-              </div>
-              <div class="portlet-body">
-
-                <div style="height: 500px; padding-right: 0px;width: 100%;overflow-x:hidden" class="scrollbar-dynamic" data-jquery-scrollbar="jqueryScrollbarOptions" data-always-visible="1" data-rail-visible="0">
-                  <ul class="feeds">
-        <div ng-repeat="conv in convs  | orderBy: 'lastTimeActive':true">
-                    <li style="background-color: #E4E4E4; width:98%;" ng-if="conv.status != 'read' ">
-                      <a ng-click="showChat(conv,1)">
-                      <div ng-click="showChat(conv,1)" class="col1">
-                        <div class="cont">
-                          <div class="cont-col1">
-                            <img  style=" height:60px; width:60; " class=" img-circle" alt="" src="../../assets/admin/layout/img/male3-512.png"/>
-                          </div>
-                          <div class="cont-col2" style="  display: table; height: 60px;">
-
-                            <div  class="desc" style=" color:black; display: table-cell; vertical-align:middle;padding-left: 68px;">
-                               <div ng-if="conv.user[2] == 'Mobile User' "> {{conv.udid}}  </div>
-                               <div ng-if="conv.user[2] != 'Mobile User'  "> {{conv.user[2]}} </div>
-                               <div  style=" color:#8E8E8E; padding-left: 20px; overflow: hidden; text-overflow: ellipsis;white-space: nowrap; width: 240px;">
-                               {{conv.lastMessage[0].body}}
+                <div class="portlet-body">
+                    <div style="height: 500px; padding-right: 0px;width: 100%;overflow-x:hidden" class="scrollbar-dynamic" data-jquery-scrollbar="jqueryScrollbarOptions" data-always-visible="1" data-rail-visible="0">
+                        <ul class="feeds">
+                            <div ng-repeat="conv in convs  | orderBy: 'lastTimeActive':true">
+                                <li ng-click="setSelected(conv)" style="{{selected === conv.udid ? 'background-color:rgba(165, 173, 200, 0.56)' : 'background-color: #E4E4E4; ' }}" style="background-color: #E4E4E4; width:98%;" ng-if="conv.status != 'read' ">
+                                    <a ng-click="showChat(conv,1)">
+                                        <div ng-click="showChat(conv,1)" class="col1">
+                                            <div class="cont">
+                                                <div class="cont-col1">
+                                                    <img style=" height:60px; width:60; " class=" img-circle" alt="" src="{{conv.user[6]}}" />
+                                                </div>
+                                                <div class="cont-col2" style="  display: table; height: 60px;">
+                                                    <div class="desc" style=" color:black; display: table-cell; vertical-align:middle;padding-left: 68px;">
+                                                        <div ng-if="conv.user[2] == 'Mobile User' "> {{conv.udid}} </div>
+                                                        <div ng-if="conv.user[2] != 'Mobile User'  "> {{conv.user[2]}} </div>
+                                                        <div style=" color:#8E8E8E; padding-left: 20px; overflow: hidden; text-overflow: ellipsis;white-space: nowrap; width: 240px;">
+                                                            {{conv.lastMessage[0].body}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col2">
+                                            <div style="color:#7B7171" class="date">
+                                                {{conv.lastTimeActive | date: "HH:mm"  }}
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li ng-click="setSelected(conv)" style="{{selected === conv.udid ? 'background-color:rgba(165, 173, 200, 0.56)' : 'notActive' }}" style="width:98%;" ng-if="conv.status == 'read' ">
+                                    <a ng-click="showChat(conv,0)">
+                                        <div class="col1">
+                                            <div class="cont">
+                                                <div class="cont-col1">
+                                                    <img style=" height:60px; width:60; " class=" img-circle" alt="" src="{{ conv.user[6]}}" />
+                                                </div>
+                                                <div class="cont-col2" style="  display: table; height: 60px;">
+                                                    <div class="desc" style=" color:black; display: table-cell; vertical-align:middle;padding-left: 68px;">
+                                                        <div ng-if="conv.user[2] == 'Mobile User' "> {{conv.udid}} </div>
+                                                        <div ng-if="conv.user[2] != 'Mobile User'  "> {{conv.user[2]}} </div>
+                                                        <div style=" color:#8E8E8E; padding-left: 20px; overflow: hidden; text-overflow: ellipsis;white-space: nowrap; width: 240px;">
+                                                            {{conv.lastMessage[0].body}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col2">
+                                            <div style="color:#7B7171" class="date">
+                                                {{conv.lastTimeActive | date: "HH:mm" }}
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
                             </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col2">
-                        <div style="color:#7B7171" class="date">
-                            {{conv.lastTimeActive | date: "HH:mm"  }}
-                        </div>
-                      </div>
-                      </a>
-                    </li>
-                      <li style="width:98%;" ng-if="conv.status == 'read' ">
-                      <a ng-click="showChat(conv,0)">
-                      <div class="col1">
-                        <div class="cont">
-                          <div class="cont-col1">
-                            <img  style=" height:60px; width:60; " class=" img-circle" alt="" src="{{ conv.user[6]}}"/>
-                          </div>
-                          <div class="cont-col2" style="  display: table; height: 60px;">
-
-                            <div  class="desc" style=" color:black; display: table-cell; vertical-align:middle;padding-left: 68px;">
-                                  <div ng-if="conv.user[2] == 'Mobile User' "> {{conv.udid}} </div>
-                               <div ng-if="conv.user[2] != 'Mobile User'  "> {{conv.user[2]}} </div>
-                               <div  style=" color:#8E8E8E; padding-left: 20px; overflow: hidden; text-overflow: ellipsis;white-space: nowrap; width: 240px;">
-                               {{conv.lastMessage[0].body}}
-                            </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col2">
-                        <div  style="color:#7B7171" class="date">
-                           {{conv.lastTimeActive  |  date: "HH:mm" }}
-                        </div>
-                      </div>
-                      </a>
-                    </li>
-</div>
-
-
+                    </div>
+                    <div class="scroller-footer">
+                    </div>
                 </div>
-
-                <div class="scroller-footer">
-                </div>
-              </div>
             </div>
             <!-- END PORTLET-->
-          </div>
-          <div class="col-md-3" style="padding-left: 0px;padding-right: 10px; border-radius: 4px;">
+        </div>
+        <div class="col-md-3" style="padding-left: 0px;padding-right: 10px; border-radius: 4px;">
             <!-- BEGIN PORTLET-->
             <div class="portlet light bordered" style="margin-bottom: 0px;padding-right: 15px;padding-left: 15px;">
-              <div class="portlet-title" style=" height: 55px; ">
-                <div class="caption caption-md font-blue">
-                <span class="glyphicon glyphicon-check" aria-hidden="true"></span>
-                  <span style="white-space:nowrap;" class="caption-subject theme-font bold uppercase">Handling
+                <div class="portlet-title" style=" height: 55px; ">
+                    <div class="caption caption-md font-blue">
+                        <span class="glyphicon glyphicon-check" aria-hidden="true"></span>
+                        <span style="white-space:nowrap;" class="caption-subject theme-font bold uppercase">Handling
                     <span ng-if="loading == 1">
                     <img  style="float:right;height: 20px; width:20p" src="http://www.pecsusa.com/loading.gif">
                     </span>
-                  </span>
-                <span  style="white-space:nowrap;" ng-bind=" {{unreadMyConvs}}" class="badge">0</span>
+                        </span>
+                        <span style="white-space:nowrap;" ng-bind="unreadMyConvs" class="badge">0</span>
+                    </div>
+                    <form action="" class="search-form">
+                        <div class="form-group has-feedback">
+                            <label for="search" class="sr-only">Search</label>
+                            <input type="text" class="form-control" name="search" id="search" placeholder="search">
+                            <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                        </div>
+                    </form>
                 </div>
-
-                <form action="" class="search-form">
-                    <div class="form-group has-feedback">
-                    <label for="search" class="sr-only">Search</label>
-                    <input type="text" class="form-control" name="search" id="search" placeholder="search">
-                      <span class="glyphicon glyphicon-search form-control-feedback"></span>
-                  </div>
-                </form>
-
-              </div>
-              <div class="portlet-body">
-                <div style="height: 500px; padding-right: 0px;width: 100%;overflow-x:hidden"  class="scrollbar-dynamic"  data-always-visible="1" data-rail-visible="0">
-                  <ul class="feeds">
-
-                    <div ng-repeat="conv in myConvs  | orderBy: 'lastTimeActive':true">
-                    <li style="background-color: #E4E4E4; width:98%;" ng-if="conv.status != 'read' ">
-                      <a ng-click="showChat(conv,2)">
-                      <div class="col1">
-                        <div class="cont">
-                          <div class="cont-col1">
-                            <img  style=" height:60px; width:60; " class=" img-circle" alt="" src="{{ conv.user[6]}}"/>
-                          </div>
-                          <div class="cont-col2" style="  display: table; height: 60px;">
-
-                            <div  class="desc" style=" color:black; display: table-cell; vertical-align:middle;padding-left: 68px;">
-                                 <div ng-if="conv.user[2] == 'User' "> {{conv.udid}} </div>
-                               <div ng-if="conv.user[2] != 'User'  "> {{conv.user[2]}} </div>
-                               <div  style=" color:#8E8E8E; padding-left: 7px; overflow: hidden; text-overflow: ellipsis;white-space: nowrap; width: 180px;">
-                               {{conv.lastMessage[0].body}}
+                <div class="portlet-body">
+                    <div style="height: 500px; padding-right: 0px;width: 100%;overflow-x:hidden" class="scrollbar-dynamic" data-always-visible="1" data-rail-visible="0">
+                        <ul class="feeds">
+                            <div ng-repeat="conv in myConvs | orderBy: 'lastTimeActive':true  track by conv.udid ">
+                                <li style="{{selected === conv.udid ? 'background-color:rgba(165, 173, 200, 0.56)' : 'background-color: #E4E4E4;' }}" style="background-color: #E4E4E4; width:98%;" ng-if="conv.status != 'read' ">
+                                    <a ng-click="showChat(conv,2)">
+                                        <div class="col1">
+                                            <div class="cont">
+                                                <div class="cont-col1">
+                                                    <img style=" height:60px; width:60; " class=" img-circle" alt="" src="{{ conv.user[6]}}" />
+                                                </div>
+                                                <div class="cont-col2" style="  display: table; height: 60px;">
+                                                    <div class="desc" style=" color:black; display: table-cell; vertical-align:middle;padding-left: 68px;">
+                                                        <div ng-if="conv.user[2] == 'User' "> {{conv.udid}} </div>
+                                                        <div ng-if="conv.user[2] != 'User'  "> {{conv.user[2]}} </div>
+                                                        <div style=" color:#8E8E8E; padding-left: 7px; overflow: hidden; text-overflow: ellipsis;white-space: nowrap; width: 180px;">
+                                                            {{conv.lastMessage[0].body}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col2">
+                                            <div style="color:#7B7171" class="date">
+                                                {{conv.lastTimeActive | date: "HH:mm" }}
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li ng-click="setSelected(conv);" style="{{selected === conv.udid ? 'background-color:rgba(165, 173, 200, 0.56)' : 'notActive' }}" style="width:98%;" ng-if="conv.status == 'read' ">
+                                    <a ng-click="showChat(conv);">
+                                        <div class="col1">
+                                            <div class="cont">
+                                                <div class="cont-col1">
+                                                    <img style=" height:60px; width:60; " class=" img-circle" alt="" src="{{conv.user[6]}}" />
+                                                </div>
+                                                <div class="cont-col2" style="  display: table; height: 60px;">
+                                                    <div class="desc" style=" color:black; display: table-cell; vertical-align:middle;padding-left: 68px;">
+                                                        <div ng-if="conv.user[2] == 'User' "> {{conv.udid}} </div>
+                                                        <div ng-if="conv.user[2] != 'User'  "> {{conv.user[2]}} </div>
+                                                        <div style=" color:#8E8E8E; padding-left: 7px; overflow: hidden; text-overflow: ellipsis;white-space: nowrap; width: 180px;">
+                                                            {{conv.lastMessage[0].body}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col2">
+                                            <div style="color:#7B7171" class="date">
+                                                {{conv.lastTimeActive | date: "HH:mm" }}
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
                             </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col2">
-                        <div style="color:#7B7171" class="date">
-                            {{conv.lastTimeActive  |  date: "HH:mm" }}
-                        </div>
-                      </div>
-                      </a>
-                    </li>
-                      <li style="width:98%;" ng-if="conv.status == 'read' ">
-                      <a ng-click="showChat(conv)">
-                      <div class="col1">
-                        <div class="cont">
-                          <div class="cont-col1">
-                            <img  style=" height:60px; width:60; " class=" img-circle" alt="" src="{{conv.user[6]}}"/>
-                          </div>
-                          <div class="cont-col2" style="  display: table; height: 60px;">
-
-                            <div  class="desc" style=" color:black; display: table-cell; vertical-align:middle;padding-left: 68px;">
-                                  <div ng-if="conv.user[2] == 'User' "> {{conv.udid}} </div>
-                               <div ng-if="conv.user[2] != 'User'  "> {{conv.user[2]}} </div>
-                               <div   style=" color:#8E8E8E; padding-left: 7px; overflow: hidden; text-overflow: ellipsis;white-space: nowrap; width: 180px;">
-                               {{conv.lastMessage[0].body}}
-                            </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col2">
-                        <div  style="color:#7B7171" class="date">
-                           {{conv.lastTimeActive  |  date: "HH:mm" }}
-                        </div>
-                      </div>
-                      </a>
-                    </li>
-</div>
-
-                    </ul>
-
-
+                        </ul>
+                    </div>
+                    <div class="scroller-footer">
+                    </div>
                 </div>
-                <div class="scroller-footer">
-                </div>
-              </div>
             </div>
             <!-- END PORTLET-->
-          </div>
-           <div  class="col-md-6 chattingBox" style="border: 1px solid #e1e1e1 !important;">
+        </div>
+        <div class="col-md-6 chattingBox" style="border: 1px solid #e1e1e1 !important;">
             <!-- BEGIN PORTLET-->
             <div class="portlet light " style="padding-left: 20px;  padding-right: 10px;padding-bottom: 17px;margin-bottom: 0px;">
-              <div class="portlet-title" style="height: 55px; ">
-                <div class="caption">
-                  <i class="icon-bubble font-red-sunglo"></i>
-                  <span class="caption-subject font-red-sunglo bold">Chat
+                <div class="portlet-title" style="height: 55px; ">
+                    <div class="caption">
+                        <i class="icon-bubble font-red-sunglo"></i>
+                        <span class="caption-subject font-red-sunglo bold">Chat
                <span  ng-if="chat.udid" > with
               <a ng-if="chat.udid"   popover-template="'/views/test.html'" popover-title="User Profile: {{chat.udid}}" popover-placement="bottom"  class="name"  popover-append-to-body='true' data-close-others="true">
                         {{chat.udid}}
-             <span ng-if="chat.user[4] == 'online' " title="online" class="item-status"><span class="badge badge-empty badge-success"></span>  </span>
-              <span ng-if="chat.user[4] != 'online' " title="offonline" class="item-status"><span class="badge badge-empty badge-danger"></span>  </span>
-              </a>
-                </span>
-                </span>
-
-                </div>
-                <div ng-if="chat != 0 && chat.owner == supervisor">
-                <button ng-click="dropConv(chat.udid)" type="button" class="btn btn-default" style="float: right;" onclick="">
-                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Drop
-                </button>
-                </div>
-              </div>
-              <div  style=" padding-bottom: 69px; "ng-if="chat == 0" class="portlet-body" id="chats">
-               <div  class="scrollbar-dynamic-chat" style="padding-bottom: 15px; height: 439px;" data-always-visible="1" data-rail-visible1="1">
-
-            <div style="margin-top: 50px">
-
-            <div style="height:100px; text-align:center; background-color: rgba(156, 156, 0, 0.05)" class="alert alert-warning" role="alert" >
-            <h3 > select a conversation to show chat </h3>
-           </div>
-
-
-             </div>
-
-               </div>
-              </div>
-              <div ng-if="chat != 0" class="portlet-body" id="chats">
-                <div class="scrollbar-dynamic-chat" style="height: 439px;" data-always-visible="1" data-rail-visible1="1">
-                  <ul class="chats">
-                  <div  ng-repeat="message in chat.messages">
-                    <li  ng-if="chat.udid == message.sender" class="in">
-                      <img class="avatar" alt="" src="../../assets/admin/layout/img/male3-512.png"/>
-                      <div title1='{{message.time | timeago}}' class="message in">
-
-                        <div class="bubble" title='{{message.time | date: "MMM  dd, hh:mm"}}'> {{ message.body}}
-                        <div class="tip in"> {{message.time | timeago}} </div> </div>
-                      </div>
-                    </li>
-                    <li ng-if="chat.udid != message.sender" class="out">
-                      <img class="avatar" alt="" src="http://www.veryicon.com/icon/ico/Avatar/Free%20Large%20Boss/Businessman.ico"/>
-                       <div title1='{{message.time | timeago}}'  class="message out">
-
-                        <span class="datetime" title='{{message.time | date: "MMM  dd, hh:mm"}}'>
-                        &nbsp; </span>
-
-                        <div  class="bubble" title='{{message.time | date: "MMM  dd, hh:mm"}}'>  {{ message.body}}
-                        <div class="tip out"> {{message.time | timeago}} </div>  </div>
-
-                      </div>
-                    </li>
+             <span ng-if="chat.user[4] == 'online' " title="online" class="item-status"><span class="badge badge-empty badge-success"></span> </span>
+                        <span ng-if="chat.user[4] != 'online' " title="offonline" class="item-status"><span class="badge badge-empty badge-danger"></span> </span>
+                        </a>
+                        </span>
+                        </span>
                     </div>
-                  </ul>
+                    <div ng-if="chat != 0 && chat.owner == supervisor">
+                        <button ng-click="dropConv(chat.udid)" type="button" class="btn btn-default" style="float: right;" onclick="">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Drop
+                        </button>
+                    </div>
                 </div>
-                <div style="float:right;position: absolute; margin: -4px 0px 0px 3px" ng-if="chat.seen =='true' ">
-                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                seen
+                <div style=" padding-bottom: 69px; " ng-if="chat == 0" class="portlet-body" id="chats">
+                    <div class="scrollbar-dynamic-chat" style="padding-bottom: 15px; height: 439px;" data-always-visible="1" data-rail-visible1="1">
+                        <div style="margin-top: 50px">
+                            <div style="height:100px; text-align:center; background-color: rgba(156, 156, 0, 0.05)" class="alert alert-warning" role="alert">
+                                <h3> select a conversation to show chat </h3>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div ng-if="chat.owner == supervisor">
-                <div class="chat-form">
-                  <div class="input-cont">
-                  <form ng-submit="sendMessage(chat.udid,messageBody);messageBody='';  " >
-                    <input ng-model="messageBody" class="form-control" type="text" placeholder="Type a message here..."/>
-                  </div>
-
-                  <div  type="submit" id="scrolll" ng-click="sendMessage(chat.udid,messageBody);messageBody='';" class="btn-cont">
-                    <span class="arrow">
+                <div ng-if="chat != 0" class="portlet-body" id="chats">
+                    <div class="scrollbar-dynamic-chat" style="height: 439px;" data-always-visible="1" data-rail-visible1="1">
+                        <ul class="chats">
+                            <div ng-repeat="message in chat.messages">
+                                <li ng-if="chat.udid == message.sender" class="in">
+                                    <img class="avatar" alt="" src="{{chat.user[6]}}" />
+                                    <div title1='{{message.time | timeago}}' class="message in">
+                                        <div class="bubble" title='{{message.time | date: "MMM  dd, hh:mm"}}'> {{ message.body}}
+                                            <div class="tip in"> {{message.time | timeago}} </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li ng-if="chat.udid != message.sender" class="out">
+                                    <img class="avatar" alt="" src="http://www.veryicon.com/icon/ico/Avatar/Free%20Large%20Boss/Businessman.ico" />
+                                    <div title1='{{message.time | timeago}}' class="message out">
+                                        <span class="datetime" title='{{message.time | date: "MMM  dd, hh:mm"}}'>
+                        &nbsp; </span>
+                                        <div class="bubble" title='{{message.time | date: "MMM  dd, hh:mm"}}'> {{ message.body}}
+                                            <div class="tip out"> {{message.time | timeago}} </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </div>
+                        </ul>
+                    </div>
+                    <div style="float:right;position: absolute; margin: -4px 0px 0px 3px" ng-if="chat.seen =='true' ">
+                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> seen
+                    </div>
+                    <div ng-if="chat.owner == supervisor">
+                        <div class="chat-form">
+                            <div class="input-cont">
+                                <form ng-submit="sendMessage(chat.udid,messageBody);messageBody='';  ">
+                                    <input ng-model="messageBody" class="form-control" type="text" placeholder="Type a message here..." />
+                            </div>
+                            <div type="submit" id="scrolll" ng-click="sendMessage(chat.udid,messageBody);messageBody='';" class="btn-cont">
+                                <span class="arrow">
                     </span>
-                    <a  id="scrolll" class="btn blue icn-only">
-                    <i class="glyphicon glyphicon-send"></i>
-                    </a>
-                    {{scrollDown()}}
-                  </div>
-                  </fonm>
-                </div>
-                </div>
-                <div ng-if="chat.owner != supervisor">
-                {{(scrollDown())}}
-                <div class="chat-form">
-                  <div class="input-cont">
-                    <input class="form-control"  type="text" disabled="disabled" placeholder="you can only read.. "/>
-                  </div>
-                  <div class="btn-cont">
-                    <span class="arrow">
+                                <a id="scrolll" class="btn blue icn-only">
+                                    <i class="glyphicon glyphicon-send"></i>
+                                </a>
+                                {{scrollDown()}}
+                            </div>
+                            </fonm>
+                        </div>
+                    </div>
+                    <div ng-if="chat.owner != supervisor">
+                        {{(scrollDown())}}
+                        <div class="chat-form">
+                            <div class="input-cont">
+                                <input class="form-control" type="text" disabled="disabled" placeholder="you can only read.. " />
+                            </div>
+                            <div class="btn-cont">
+                                <span class="arrow">
                     </span>
-                    <a href="" class="btn blue icn-only">
-                    <i class="fa fa-check icon-white"></i>
-                    </a>
-                  </div>
+                                <a href="" class="btn blue icn-only">
+                                    <i class="fa fa-check icon-white"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                </div>
-              </div>
             </div>
             <!-- END PORTLET-->
-          </div>
-
         </div>
-      </div>
+    </div>
+</div>
+<script type="text/javascript">
+//         jQuery(document).ready(function() {
+
+// $(document).on("click", ".setSelected", function () {
+//       if($(this).attr('style'))
+//     $(this).removeAttr('style');
+//       else
+//     $(this).css('background-color', 'black');
+//   console.log("hello");
+//     });
+
+
+//  });
+</script>
