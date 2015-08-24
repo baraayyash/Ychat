@@ -8,9 +8,10 @@
  * Controller of the ang1App
  */
 angular.module('ang1App')
-    .controller('MainCtrl', function($scope, $q, chatServices) {
+    .controller('MainCtrl', function($scope, $q, chatServices,$http, $routeParams) {
 
-        $scope.supervisor = 1;
+
+        $scope.supervisor = $routeParams.id;
         $scope.convs = {};
         $scope.myConvs = {};
         $scope.chat = 0;
@@ -19,6 +20,11 @@ angular.module('ang1App')
         $scope.loading = 1;
         $scope.selected = 0;
 
+
+        // $locationProvider.html5Mode(true);
+
+        // var paramValue = $location.search().myParam;
+        // console.log("this is it  : " + paramValue);
 
         $scope.setSelected = function(conv) {
             $scope.selected = conv.udid;
@@ -193,7 +199,7 @@ angular.module('ang1App')
                     result.lastMessage = user;
                     conversations.push(result);
                     $scope.convs = conversations;
-                    console.log($scope.convs);
+                    // console.log($scope.convs);
                 });
                 $scope.loading = 0;
             });
