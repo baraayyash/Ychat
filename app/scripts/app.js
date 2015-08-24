@@ -22,17 +22,17 @@ angular
   ])
   .config(function ($routeProvider) {
     $routeProvider
-      .when('/', {
+      .when('/chat/:id', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl',
         controllerAs: 'main'
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
+      .when('/call', {
+        templateUrl: 'views/call.html',
+        controller: 'Call',
+        controllerAs: 'call'
       })
       .otherwise({
         redirectTo: '/'
-      });
+      })
   });
