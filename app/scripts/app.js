@@ -18,7 +18,8 @@ angular
     'ngTouch',
     'ui.bootstrap',
     'popoverToggle',
-    'ngtimeago'
+    'ngtimeago',
+    'timer'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -33,6 +34,6 @@ angular
         controllerAs: 'call'
       })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/chat/1'
       })
   });
