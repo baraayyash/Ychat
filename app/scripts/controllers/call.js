@@ -58,7 +58,8 @@ angular.module('ang1App')
         // $scope.status = "call ended";
         $scope.$broadcast('timer-stop');
         $scope.status = 'waiting';
-        connection = conn;        $scope.$apply();
+        connection = conn;
+         $scope.$apply();
       });
 
 
