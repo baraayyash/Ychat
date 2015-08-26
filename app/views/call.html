@@ -1,13 +1,13 @@
 <style>
-
-
 .profile-usertitle-job {
     text-transform: uppercase;
     color: #5b9bd1;
     font-size: 12px;
     font-weight: 800;
     margin-bottom: 7px;
-},
+}
+
+,
 .profile-userbuttons {
     text-align: center;
     margin-top: 10px;
@@ -19,7 +19,6 @@
     font-weight: 600;
     margin-bottom: 7px;
 }
-
 </style>
 <div class="page-fixed-main-content">
     <div class="row">
@@ -27,335 +26,50 @@
             <div class="portlet light bordered">
                 <div class="portlet-title">
                     <div class="caption caption-md font-blue">
-                        <i class="icon-share font-blue"></i>
-                        <span class="caption-subject theme-font bold uppercase">Recent Activities</span>
+                        <i class="glyphicon glyphicon-earphone"></i>
+                        <span class="caption-subject theme-font bold ">My Calls</span>
                     </div>
                     <div class="actions">
-
-     <div  style="margin-top:15px;text-align: center"  class="btn-group dropdown" dropdown="" keyboard-nav="" style="">
-        <button id="simple-btn-keyboard-nav" type="button" class="btn btn-default dropdown-toggle" dropdown-toggle="" aria-haspopup="true" aria-expanded="false">
-         Available <span style="background-color: #249710" class="badge badge-empty badge-success"></span>
-          <span class="caret"></span>
-        </button>
-        <ul style="min-width: 100px;width100px;" class="dropdown-menu" role="menu" aria-labelledby="simple-btn-keyboard-nav">
-            <li role="menuitem"><a href="">  Available </a></li>
-            <li role="menuitem"><a href="">Busy </a></li>
-            <li role="menuitem"><a href="">Away</a></li>
-            <li role="menuitem"><a href="">Offline</a></li>
-            <li class="divider"></li>
-        </ul>
-    </div>
+                        <div style="margin-top:15px;text-align: center" class="btn-group dropdown" dropdown="" keyboard-nav="" style="">
+                            <button id="simple-btn-keyboard-nav" type="button" class="btn btn-default dropdown-toggle" dropdown-toggle="" aria-haspopup="true" aria-expanded="false">
+                                Available <span style="background-color: #249710" class="badge badge-empty badge-success"></span>
+                                <span class="caret"></span>
+                            </button>
+                            <ul style="min-width: 100px;width100px;" class="dropdown-menu" role="menu" aria-labelledby="simple-btn-keyboard-nav">
+                                <li role="menuitem"><a href="">  Available </a></li>
+                                <li role="menuitem"><a href="">Busy </a></li>
+                                <li role="menuitem"><a href="">Away</a></li>
+                                <li role="menuitem"><a href="">Offline</a></li>
+                                <li class="divider"></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <div class="portlet-body">
-                    <div class="scroller" style="height: 308px;" data-always-visible="1" data-rail-visible="0">
+                    <div style="overflow-x:hidden;height: 308px;overflow-y: scroll;" class="scroller"  data-always-visible="1" data-rail-visible="0">
                         <ul class="feeds">
-                            <li>
-                                <div class="col1">
-                                    <div class="cont">
-                                        <div class="cont-col1">
-                                            <div class="label label-sm label-info">
-                                                <i class="fa fa-check"></i>
-                                            </div>
-                                        </div>
-                                        <div class="cont-col2">
-                                            <div class="desc">
-                                                You have 4 pending tasks. <span class="label label-sm label-warning ">
-                                                            Take action <i class="fa fa-share"></i>
-                                                            </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col2">
-                                    <div class="date">
-                                        Just now
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <div class="col1">
-                                        <div class="cont">
-                                            <div class="cont-col1">
-                                                <div class="label label-sm label-success">
-                                                    <i class="fa fa-bar-chart-o"></i>
-                                                </div>
-                                            </div>
-                                            <div class="cont-col2">
-                                                <div class="desc">
-                                                    Finance Report for year 2013 has been released.
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col2">
-                                        <div class="date">
-                                            20 mins
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <div class="col1">
-                                    <div class="cont">
-                                        <div class="cont-col1">
-                                            <div class="label label-sm label-danger">
-                                                <i class="fa fa-user"></i>
-                                            </div>
-                                        </div>
-                                        <div class="cont-col2">
-                                            <div class="desc">
-                                                You have 5 pending membership that requires a quick review.
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col2">
-                                    <div class="date">
-                                        24 mins
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="col1">
-                                    <div class="cont">
-                                        <div class="cont-col1">
-                                            <div class="label label-sm label-info">
-                                                <i class="fa fa-shopping-cart"></i>
-                                            </div>
-                                        </div>
-                                        <div class="cont-col2">
-                                            <div class="desc">
-                                                New order received with <span class="label label-sm label-success">
-                                                            Reference Number: DR23923 </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col2">
-                                    <div class="date">
-                                        30 mins
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="col1">
-                                    <div class="cont">
-                                        <div class="cont-col1">
-                                            <div class="label label-sm label-success">
-                                                <i class="fa fa-user"></i>
-                                            </div>
-                                        </div>
-                                        <div class="cont-col2">
-                                            <div class="desc">
-                                                You have 5 pending membership that requires a quick review.
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col2">
-                                    <div class="date">
-                                        24 mins
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="col1">
-                                    <div class="cont">
-                                        <div class="cont-col1">
-                                            <div class="label label-sm label-default">
-                                                <i class="fa fa-bell-o"></i>
-                                            </div>
-                                        </div>
-                                        <div class="cont-col2">
-                                            <div class="desc">
-                                                Web server hardware needs to be upgraded. <span class="label label-sm label-default ">
-                                                            Overdue </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col2">
-                                    <div class="date">
-                                        2 hours
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <div class="col1">
+                            <li ng-repeat="call in calls |  orderBy: 'Time':true ">
+                                <a href="">
+                                    <div style="width:85%" class="col1">
                                         <div class="cont">
                                             <div class="cont-col1">
                                                 <div class="label label-sm label-default">
-                                                    <i class="fa fa-briefcase"></i>
-                                                </div>
+                                                            <i class="fa fa-user"></i>
+                                                        </div>
                                             </div>
                                             <div class="cont-col2">
                                                 <div class="desc">
-                                                    IPO Report for year 2013 has been released.
+                                                    <span class="label label-sm label-success">
+                                                             {{call.From}} </span>
+
+                                                             <span style="margin-left: 4px;" > called you. Call Duration {{call.Duration}}</span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col2">
+                                    <div style="width: 176px" class="col2">
                                         <div class="date">
-                                            20 mins
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <div class="col1">
-                                    <div class="cont">
-                                        <div class="cont-col1">
-                                            <div class="label label-sm label-info">
-                                                <i class="fa fa-check"></i>
-                                            </div>
-                                        </div>
-                                        <div class="cont-col2">
-                                            <div class="desc">
-                                                You have 4 pending tasks. <span class="label label-sm label-warning ">
-                                                            Take action <i class="fa fa-share"></i>
-                                                            </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col2">
-                                    <div class="date">
-                                        Just now
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <div class="col1">
-                                        <div class="cont">
-                                            <div class="cont-col1">
-                                                <div class="label label-sm label-danger">
-                                                    <i class="fa fa-bar-chart-o"></i>
-                                                </div>
-                                            </div>
-                                            <div class="cont-col2">
-                                                <div class="desc">
-                                                    Finance Report for year 2013 has been released.
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col2">
-                                        <div class="date">
-                                            20 mins
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <div class="col1">
-                                    <div class="cont">
-                                        <div class="cont-col1">
-                                            <div class="label label-sm label-default">
-                                                <i class="fa fa-user"></i>
-                                            </div>
-                                        </div>
-                                        <div class="cont-col2">
-                                            <div class="desc">
-                                                You have 5 pending membership that requires a quick review.
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col2">
-                                    <div class="date">
-                                        24 mins
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="col1">
-                                    <div class="cont">
-                                        <div class="cont-col1">
-                                            <div class="label label-sm label-info">
-                                                <i class="fa fa-shopping-cart"></i>
-                                            </div>
-                                        </div>
-                                        <div class="cont-col2">
-                                            <div class="desc">
-                                                New order received with <span class="label label-sm label-success">
-                                                            Reference Number: DR23923 </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col2">
-                                    <div class="date">
-                                        30 mins
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="col1">
-                                    <div class="cont">
-                                        <div class="cont-col1">
-                                            <div class="label label-sm label-success">
-                                                <i class="fa fa-user"></i>
-                                            </div>
-                                        </div>
-                                        <div class="cont-col2">
-                                            <div class="desc">
-                                                You have 5 pending membership that requires a quick review.
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col2">
-                                    <div class="date">
-                                        24 mins
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="col1">
-                                    <div class="cont">
-                                        <div class="cont-col1">
-                                            <div class="label label-sm label-warning">
-                                                <i class="fa fa-bell-o"></i>
-                                            </div>
-                                        </div>
-                                        <div class="cont-col2">
-                                            <div class="desc">
-                                                Web server hardware needs to be upgraded. <span class="label label-sm label-default ">
-                                                            Overdue </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col2">
-                                    <div class="date">
-                                        2 hours
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <div class="col1">
-                                        <div class="cont">
-                                            <div class="cont-col1">
-                                                <div class="label label-sm label-info">
-                                                    <i class="fa fa-briefcase"></i>
-                                                </div>
-                                            </div>
-                                            <div class="cont-col2">
-                                                <div class="desc">
-                                                    IPO Report for year 2013 has been released.
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col2">
-                                        <div class="date">
-                                            20 mins
+                                    {{call.Time | timeago}}
                                         </div>
                                     </div>
                                 </a>
@@ -382,32 +96,28 @@
                     </div>
                 </div>
                 <div style="height:344px" class="portlet-body">
-<div style="margin-top:30px;" ng-if="status == 'waiting' ">
-
-<div style="text-align: center">
-
-
-    <div  style="margin-top:15px;text-align: center"  class="btn-group dropdown" dropdown="" keyboard-nav="" style="">
-        <button id="simple-btn-keyboard-nav" type="button" class="btn btn-default dropdown-toggle" dropdown-toggle="" aria-haspopup="true" aria-expanded="false">
-         caller id :  +152362361252 <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" role="menu" aria-labelledby="simple-btn-keyboard-nav">
-            <li role="menuitem"><a href="">+152362361252</a></li>
-            <li role="menuitem"><a href="">+972599437784</a></li>
-            <li role="menuitem"><a href="">+201365236423</a></li>
-            <li class="divider"></li>
-        </ul>
-    </div>
-</div>
-    <div style="margin-top:20px;text-align: center"  class="input-group input-group-lg">
-        <span class="input-group-addon" id="sizing-addon1">00</span>
-        <input type="text" class="form-control" placeholder="Phone Number" aria-describedby="sizing-addon1">
-    </div>
-    <div style="margin-top:20px;text-align: center" class="profile-userbuttons">
-        <button style="width:20%;marin-top:20px;" type="button" class="btn btn-primary" aria-haspopup="true" aria-expanded="false">call</button>
-    </div>
-</div>
-
+                    <div style="margin-top:30px;" ng-if="status == 'waiting' ">
+                        <div style="text-align: center">
+                            <div style="margin-top:15px;text-align: center" class="btn-group dropdown" dropdown="" keyboard-nav="" style="">
+                                <button id="simple-btn-keyboard-nav" type="button" class="btn btn-default dropdown-toggle" dropdown-toggle="" aria-haspopup="true" aria-expanded="false">
+                                    caller id : +152362361252 <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="simple-btn-keyboard-nav">
+                                    <li role="menuitem"><a href="">+152362361252</a></li>
+                                    <li role="menuitem"><a href="">+972599437784</a></li>
+                                    <li role="menuitem"><a href="">+201365236423</a></li>
+                                    <li class="divider"></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div style="margin-top:20px;text-align: center" class="input-group input-group-lg">
+                            <span class="input-group-addon" id="sizing-addon1">00</span>
+                            <input type="text" class="form-control" placeholder="Phone Number" aria-describedby="sizing-addon1">
+                        </div>
+                        <div style="margin-top:20px;text-align: center" class="profile-userbuttons">
+                            <button style="width:20%;marin-top:20px;" type="button" class="btn btn-primary" aria-haspopup="true" aria-expanded="false">call</button>
+                        </div>
+                    </div>
                     <div ng-if=" status == 'call' " class="profile-sidebar" style="width: 250px;margin: 0 auto;">
                         <!-- PORTLET MAIN -->
                         <div class="portlet light profile-sidebar-portlet">
@@ -437,15 +147,17 @@
                                         <button ng-click="ignore()" ng-if="1" type="button" class="btn btn-circle btn-danger btn-sm">Reject</button>
                                     </div>
                                     <div ng-if="callStatus == 'going' ">
-                                        <timer interval="1000" max-time-unit="'minute'" > <div> <h1 style="font-weight: bold; margin-top: 3px;"> {{mminutes}} : {{sseconds}} </h1> </div> </timer>
+                                        <timer ng-model="time1" interval="1000" max-time-unit="'minute'">
+                                            <div>
+                                                <h1 style="font-weight: bold; margin-top: 3px;"> {{mminutes}} : {{sseconds}} </h1> </div>
+                                        </timer>
                                         <button ng-if="!isMute()" n g-click="mute()" type="button" class="btn btn-default" title="Mute"><span class="glyphicon glyphicon-volume-off" aria-hidden="true"></span> </button>
                                         <button ng-if="isMute()" ng-click="mute()" type="button" class="btn btn-default" title="un Mute"><span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span> </button>
                                         <button type="button" class="btn btn-default" title="Hold"><span class="glyphicon glyphicon-pause" glyphicon glyphicon-volume-offaria-hidden="true"></span> </button>
                                         <button ng-click="block(user.udid,1);hangUp();" ng-if="user.Blocked == 'unblocked' " type="button" class="btn btn-danger" aria-haspopup="true" aria-expanded="false">Block </button>
-                                         <button ng-click="block(user.udid,0)" ng-if="user.Blocked == 'blocked' " type="button" class="btn btn-circle green btn-sm">Unblock</button>
-
+                                        <button ng-click="block(user.udid,0)" ng-if="user.Blocked == 'blocked' " type="button" class="btn btn-circle green btn-sm">Unblock</button>
                                         <div style="margin-top: 3px" class="profile-userbuttons">
-                                            <button style="width: 70%" ng-click="hangUp()" ng-if="1" type="button" class="btn btn-circle btn-danger btn-sm">Hang up</button>
+                                            <button style="width: 70%" ng-click="hangUp(time1)" ng-if="1" type="button" class="btn btn-circle btn-danger btn-sm">Hang up</button>
                                         </div>
                                     </div>
                                 </div>
@@ -465,7 +177,3 @@
     </div>
 </div>
 </div>
-
-
-
-

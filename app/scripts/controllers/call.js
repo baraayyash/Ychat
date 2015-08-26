@@ -15,8 +15,10 @@ angular.module('ang1App')
             $scope.callStatus = 'going';
             $scope.supervisor = 1;
              var calltime = 0;
-
-
+             var timerData = 0;
+            var connection = 0;
+            var connection;
+            var calls = new Firebase("https://dazzling-fire-5618.firebaseio.com/ios/calls/");
 
             $http.get('https://yamsafer-call.herokuapp.com/do').success(function (token) {
                Twilio.Device.setup(token);
@@ -31,8 +33,41 @@ angular.module('ang1App')
             return def.promise;
         };
 
+         var getMyCalls = function() {
+            var def = $q.defer();
+            calls.orderByChild('Time').on('value', function(snap) {
+                var records = [];
+                snap.forEach(function(ss) {
 
-        var connection;
+                    var v = ss.val();
+                    v.lastTimeActive = new Date(v.lastTimeActive);
+                    if (v.To == $scope.supervisor) {
+                        records.push(v);
+                    }
+                });
+                def.resolve(records);
+            });
+            return def.promise;
+        };
+
+         calls.on('child_changed', function(snap) {
+                           getMyCalls().then(function(calls) {
+                        $scope.calls = calls;
+                    });
+         });
+
+
+        var call = new Firebase("https://dazzling-fire-5618.firebaseio.com/ios/calls/");
+                  call.on('child_added', function(snap) {
+                           getMyCalls().then(function(calls) {
+                        $scope.calls = calls;
+                    });
+         });
+
+           getMyCalls().then(function(calls) {
+                        $scope.calls = calls;
+
+                    });
 
 
       Twilio.Device.ready(function (device) {
@@ -40,12 +75,15 @@ angular.module('ang1App')
       });
 
       Twilio.Device.error(function (error) {
-       // $scope.status = "erorr"+error.message;
+            $http.get('https://yamsafer-call.herokuapp.com/do').success(function (token) {
+               Twilio.Device.setup(token);
+                         }); // Note: Should do error checking here.
       });
 
       Twilio.Device.cancel(function (device) {
 
        $scope.status = 'waiting' ;
+       $scope.hangUp();
        $scope.$apply();
       });
 
@@ -55,16 +93,32 @@ angular.module('ang1App')
       });
 
       Twilio.Device.disconnect(function (conn) {
-        // $scope.status = "call ended";
+        // $scope.status = "call ended"
+          function n(num){
+    return num> 9 ? "" + num: "0" + num;
+}
         $scope.$broadcast('timer-stop');
+
+        timerData = n(timerData.minutes)  + ":" + n(timerData.seconds);
+
+      saveCall(connection,timerData);
+
         $scope.status = 'waiting';
-        connection = conn;
-         $scope.$apply();
       });
 
 
       /* Listen for incoming connections */
       Twilio.Device.incoming(function (conn) {
+
+var notification = new Notification('New Call', {
+      icon: 'src="http://iconizer.net/files/Bunch_of_Bluish_Icons/orig/call.png"',
+      body: "New call from : " + conn.parameters.From,
+    });
+
+    notification.onclick = function () {
+      window.open("http://localhost:9000/#/call");
+    };
+
 
 
         $scope.status = 'call';
@@ -87,15 +141,15 @@ angular.module('ang1App')
                         time.getHours() + ':' +
                         ((time.getMinutes() < 10) ? ("0" + time.getMinutes()) : (time.getMinutes())) + ':' +
                         ((time.getSeconds() < 10) ? ("0" + time.getSeconds()) : (time.getSeconds()));
-        console.log("time : " + time);
-        console.log("call time : " + calltime );
-
   };
 
+  $scope.$on('timer-stopped', function (event, data){
+                timerData = data;
+            });
+
       $scope.hangUp = function(){
-        $scope.$broadcast('timer-stop');
+
       connection.disconnect();
-      saveCall(connection);
 
   };
 
@@ -116,13 +170,14 @@ angular.module('ang1App')
      };
 
 
-     var saveCall = function(connection){
+     var saveCall = function(connection,timerData){
 
         var calls = new Firebase("https://dazzling-fire-5618.firebaseio.com/ios/calls/" );
                     calls.push({
                         From: connection.parameters.From,
                         To: "" + $scope.supervisor,
-                        Time : "" + calltime
+                        Time : "" + calltime,
+                        Duration : timerData
                     });
      };
 
