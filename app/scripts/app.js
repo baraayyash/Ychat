@@ -28,7 +28,7 @@ angular
         controller: 'MainCtrl',
         controllerAs: 'main'
       })
-      .when('/call', {
+      .when('/call/:id', {
         templateUrl: 'views/call.html',
         controller: 'Call',
         controllerAs: 'call'

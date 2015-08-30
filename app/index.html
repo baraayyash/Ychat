@@ -75,7 +75,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     </div>
                     <div style="float: left;  width: 200px;">
     <center>
-                    <a href="#/call" style="width:10px;height: 10px;">
+                    <a href="#/call/1" style="width:10px;height: 10px;">
                         <img style="width:50px;height: 50px;margin-left: 10px;margin-top: 6px"
          src="http://iconizer.net/files/Bunch_of_Bluish_Icons/orig/call.png" alt="Logo">
                     </a>
@@ -95,7 +95,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         <!-- BEGIN GROUP NOTIFICATION -->
                         <div class="btn-group-notification btn-group" id="header_notification_bar">
                             <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                <span class="badge">{{unreadMyConvs}} </span>
+                                <span ng-bind="unreadMyConvs" class="badge"></span>
                             </button>
                             <ul class="dropdown-menu-v2">
                                 <div class="portlet-body">

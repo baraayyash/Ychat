@@ -20,7 +20,6 @@ angular.module('ang1App')
         $scope.loading = 1;
         $scope.selected = 0;
 
-
         // $locationProvider.html5Mode(true);
 
         // var paramValue = $location.search().myParam;
