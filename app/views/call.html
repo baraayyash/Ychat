@@ -151,8 +151,8 @@
                                             <div>
                                                 <h1 style="font-weight: bold; margin-top: 3px;"> {{mminutes}} : {{sseconds}} </h1> </div>
                                         </timer>
-                                        <button ng-if="!isMute()" n g-click="mute()" type="button" class="btn btn-default" title="Mute"><span class="glyphicon glyphicon-volume-off" aria-hidden="true"></span> </button>
-                                        <button ng-if="isMute()" ng-click="mute()" type="button" class="btn btn-default" title="un Mute"><span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span> </button>
+                                        <button ng-if="muted == 'false' " ng-click="mute()" type="button" class="btn btn-default" title="Mute"><span class="glyphicon glyphicon-volume-off" aria-hidden="true"></span> </button>
+                                        <button ng-if="muted == 'true' " ng-click="mute()" type="button" class="btn btn-default" title="un Mute"><span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span> </button>
                                         <button type="button" class="btn btn-default" title="Hold"><span class="glyphicon glyphicon-pause" glyphicon glyphicon-volume-offaria-hidden="true"></span> </button>
                                         <button ng-click="block(user.udid,1);hangUp();" ng-if="user.Blocked == 'unblocked' " type="button" class="btn btn-danger" aria-haspopup="true" aria-expanded="false">Block </button>
                                         <button ng-click="block(user.udid,0)" ng-if="user.Blocked == 'blocked' " type="button" class="btn btn-circle green btn-sm">Unblock</button>

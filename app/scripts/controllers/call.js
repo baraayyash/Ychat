@@ -8,16 +8,16 @@
  * Controller of the ang1App
  */
 angular.module('ang1App')
-  .controller('Call', function ($scope, $http, $q) {
-            $scope.token = 0;
+  .controller('Call', function ($scope, $http, $q, $routeParams) {
             $scope.status = 'waiting';
-            // $scope.status = 'call';
             $scope.callStatus = 'going';
-            $scope.supervisor = 1;
+            $scope.supervisor = $routeParams.id;
              var calltime = 0;
              var timerData = 0;
             var connection = 0;
             var connection;
+            var flag = 0;
+
             var calls = new Firebase("https://dazzling-fire-5618.firebaseio.com/ios/calls/");
 
             $http.get('https://yamsafer-call.herokuapp.com/do').success(function (token) {
@@ -83,8 +83,9 @@ angular.module('ang1App')
       Twilio.Device.cancel(function (device) {
 
        $scope.status = 'waiting' ;
-       $scope.hangUp();
+       if(flag)
        $scope.$apply();
+      flag = 1;
       });
 
       Twilio.Device.connect(function (conn) {
@@ -110,17 +111,18 @@ angular.module('ang1App')
       /* Listen for incoming connections */
       Twilio.Device.incoming(function (conn) {
 
+        if(!document.hasFocus()){
 var notification = new Notification('New Call', {
-      icon: 'src="http://iconizer.net/files/Bunch_of_Bluish_Icons/orig/call.png"',
+      icon: 'http://iconizer.net/files/Bunch_of_Bluish_Icons/orig/call.png',
       body: "New call from : " + conn.parameters.From,
     });
 
+
     notification.onclick = function () {
-      window.open("http://localhost:9000/#/call");
+     window.focus();
     };
 
-
-
+}
         $scope.status = 'call';
         $scope.callStatus = 'incoming';
         $scope.loading = 1;
@@ -153,7 +155,7 @@ var notification = new Notification('New Call', {
 
   };
 
-      $scope.ignore = function(){ connection.ignore(); $scope.status = 'waiting'; };
+      $scope.ignore = function(){flag=0; connection.ignore(); };
 
       $scope.isMute = function(){ return connection.isMuted() ;};
 
@@ -181,11 +183,19 @@ var notification = new Notification('New Call', {
                     });
      };
 
+
+     $scope.muted = 'false';
+
       $scope.mute = function(){
-       if( connection.isMuted() )
-        connection.mute(false);
-     else
+
+       if( connection.isMuted() ){
+        $scope.muted = 'false';
+        connection.mute(false);}
+     else{
+      $scope.muted = 'true';
         connection.mute(true);
+     }
+
       };
 
 
